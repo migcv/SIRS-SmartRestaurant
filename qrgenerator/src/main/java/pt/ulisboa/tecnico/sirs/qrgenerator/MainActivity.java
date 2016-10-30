@@ -84,3 +84,4 @@ public class MainActivity extends AppCompatActivity {
         return bitmap;
     } /// end of this method
 }
+

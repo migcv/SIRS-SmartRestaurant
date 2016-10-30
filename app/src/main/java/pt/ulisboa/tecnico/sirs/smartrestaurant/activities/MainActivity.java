@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
+
     }
 
     @Override
