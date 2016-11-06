@@ -7,24 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Menu.OnFragmentInteractionListener} interface
+ * {@link FoodMenu.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Menu#newInstance} factory method to
+ * Use the {@link FoodMenu#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Menu extends Fragment {
+public class FoodMenu extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,7 +30,7 @@ public class Menu extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Menu() {
+    public FoodMenu() {
         // Required empty public constructor
     }
 
@@ -46,11 +40,11 @@ public class Menu extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Menu.
+     * @return A new instance of fragment FoodMenu.
      */
     // TODO: Rename and change types and number of parameters
-    public static Menu newInstance(String param1, String param2) {
-        Menu fragment = new Menu();
+    public static FoodMenu newInstance(String param1, String param2) {
+        FoodMenu fragment = new FoodMenu();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,25 +59,13 @@ public class Menu extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        ArrayList<String> shoppingList = null;
-        ArrayAdapter<String> adapter = null;
-        ListView lv = null;
-
-        shoppingList = new ArrayList<>();
-        Collections.addAll(shoppingList, "Eggs", "Yogurt", "Milk", "Bananas", "Apples", "Tide with bleach", "Cascade");
-        shoppingList.addAll(Arrays.asList("Napkins", "Dog food", "Chapstick", "Bread"));
-        shoppingList.add("Sunscreen");
-        shoppingList.add("Toothpaste");
-        //adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, shoppingList);
-        //lv = (ListView) findViewById(R.id.menuList);
-        lv.setAdapter(adapter);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_menu2, container, false);
+        return inflater.inflate(R.layout.fragment_food_menu, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

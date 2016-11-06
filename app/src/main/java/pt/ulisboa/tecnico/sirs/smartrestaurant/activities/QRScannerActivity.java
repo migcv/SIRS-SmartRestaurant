@@ -55,16 +55,6 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         Log.e("handler", rawResult.getText()); // Prints scan results
         Log.e("handler", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
 
-
-
-        // show the scanner result into dialog box.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setMessage(rawResult.getText());
-        AlertDialog alert1 = builder.create();
-        alert1.show();
-        alert1.hide();
-
         // If you would like to resume scanning, call this method below:
         // mScannerView.resumeCameraPreview(this);
     }
