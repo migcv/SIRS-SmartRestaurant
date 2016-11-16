@@ -32,10 +32,10 @@ public class Table extends AsyncTask<Pair<Context, String>, Void, String> {
     protected String doInBackground(Pair<Context, String>... params) {
 
         if (myApiService == null) {  // Only do this once
-            //MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-            //.setRootUrl("https://restauranteserver.appspot.com/_ah/api/");
+            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+            .setRootUrl("https://restauranteserver.appspot.com/_ah/api/");
 
-            MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+            /*MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
                         // options for running against local devappserver
                         // - 10.0.2.2 is localhost's IP address in Android emulator
@@ -47,7 +47,7 @@ public class Table extends AsyncTask<Pair<Context, String>, Void, String> {
                                 abstractGoogleClientRequest.setDisableGZipContent(true);
                             }
                         });
-                // end options for devappserver
+                // end options for devappserver*/
 
                 myApiService = builder.build();
             }
@@ -65,7 +65,7 @@ public class Table extends AsyncTask<Pair<Context, String>, Void, String> {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, result, Toast.LENGTH_LONG);
             System.out.println(result);
         }
 }

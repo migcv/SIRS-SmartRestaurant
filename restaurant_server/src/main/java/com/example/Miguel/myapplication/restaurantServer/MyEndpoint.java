@@ -49,12 +49,13 @@ public class MyEndpoint {
         return response;
     }
 
-    @ApiMethod(name = "receiveQRCode")
+    @ApiMethod(name = "verifyQRCode")
     public GenerateQRCode verifyQRCode(@Named("name") String name) {
         GenerateQRCode response = new GenerateQRCode();
         response.verifyQR(name);
         return response;
     }
+
 
 }
 

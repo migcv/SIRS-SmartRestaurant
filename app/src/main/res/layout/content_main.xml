@@ -13,19 +13,32 @@
     tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <TextView
+        android:text="Welcome to the Smart Restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView3"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        android:fontFamily="casual"
+        android:textStyle="normal|bold"
+        android:textColor="@color/colorPrimary" />
+
     <Button
         android:text="Scan Table QR Code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/scanQRCodeButton"
         app:layout_anchorGravity="center_vertical|center_horizontal"
         android:layout_gravity="bottom|center_horizontal"
         android:onClick="QRScanner"
+        style="@style/Widget.AppCompat.Button"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        style="@style/Widget.AppCompat.Button" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView3" />
 
 
 </RelativeLayout>
