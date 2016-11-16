@@ -3,624 +3,291 @@
 
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/jsr305-2.0.1_af614b32c005711cb7b8e1aa4da4b6a5f191ad68/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/zxing/1.8.4/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="68ef1daf85c69fca8fddf7bbb947fc51cc9f8ca3">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/me.dm7.barcodescanner-zxing-1.8.4_a4fa610f647f255ff9dcd48473b6281952f2aa7d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.20.0/2408070b2abec043624d35b35e30450f1b663858/google-http-client-jackson2-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2408070b2abec043624d35b35e30450f1b663858">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-http-client-jackson2-1.20.0_beca023a8a19797b955b5144fd3cf82f646271e5.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.0.0_a230e98fb3a8268ed4a3921f91423c435712718d/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/jackson-core-2.1.3_bb3532929ee360ab66455cc61b5112393a97ba79.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-jackson2/1.20.0/2408070b2abec043624d35b35e30450f1b663858/google-http-client-jackson2-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2408070b2abec043624d35b35e30450f1b663858">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-http-client-jackson2-1.20.0_beca023a8a19797b955b5144fd3cf82f646271e5/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.0.0_8b3ea90d4a5d8d29064331c8468f99a302d15029.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.1.3/f6c3aed1cdfa21b5c1737c915186ea93a95a58bd/jackson-core-2.1.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/jackson-core-2.1.3_bb3532929ee360ab66455cc61b5112393a97ba79/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/prov/1.54.0.0/2761c67fdffa21ffcd73cfb8c3acd52ca8866694/prov-1.54.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2761c67fdffa21ffcd73cfb8c3acd52ca8866694">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/prov-1.54.0.0_d753f5df54c0491334e1302e9a1b93e178c2c45a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_28e8115d4058aa8ca37ff8dc21d89a88719f8ad1/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_7e8ad062c47c9f7b68fea324ddf13dbdb5dc5003.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_228baa0ca9d9dddeb5150aa1aca1114108a0d611/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_00c9ae58617e307a073283ed729d05a07e57d410.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_57f5fcff607052d292b17c36192d59d3c3794ed8.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_9c6b03d58ad1f58083b0fa500a78720e82c6eb7b/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/core-3.2.1_3ef1fcc7c92659c829b353c5738c92a67f71e2bc.jar" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_43aed11959f5facd6b75436ebcc2c59a470ffa46\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_0e3ae85ca29e4f15742bf7405255526661c018ed/classes.dex" />
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.0_62dfcc791b758f8df51a0beefb03fa072589bd87\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_cc7ff37467afccfa5c795f6426397f02e4b71b2c/classes.dex" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_bb4f1ae17505a1379b7f8cda538f2ebeca28d754\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/me.dm7.barcodescanner/core/1.8.4/jars/classes.jar"
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.0_f27bc782b3e9900adabc5708a2c86aeb0f1f9a63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\core\1.8.4\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="af8d42f1f020e936b8cd9f5cb6c75993194895a3">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/me.dm7.barcodescanner-core-1.8.4_69738588dda377a095b9338e6ec08815a9860428.jar" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.dm7.barcodescanner-core-1.8.4_8b09b64bd3b1c3f0fe55bd2a0af6aae9d2ebf602\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.2.1_3ef1fcc7c92659c829b353c5738c92a67f71e2bc/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_fbfdd767c5a83a7cb55d345328c5036f3d06390c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.0.0_32fe4701011a15cc677eac7bd244a23e501d07b0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_b9eec6def9e8e24080ab92048a0c6d6ed8a64bf9.jar" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.0_5cb2eaa1f00c2406e17dbb4d63daab3a72140c50\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_608c70266081c66be15b3bbdb0cafefaa0bc307f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.0_42960db1a1de9dee222d536dbcb6a67327f7aabf/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_51f78522b9bdb20393ba043ce0f51c3373caa4ae.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/13.0/381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7/guava-jdk5-13.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/guava-jdk5-13.0_0289fadb8a4e461f04fbd210d89f00a8c78baa6a/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0e63b904f2040a856e61662b4b527a3ab01d9813">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/instant-run_21add4ddb7ccceef0ff86150ad44d5e6190a3339.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_8c3a9c39e17c8c6027559810fbbfdd738a09c228.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.0_22a913680bb19699b7090b6539901a4976d6c2e9/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.0.0_919c30610656af1f02fd5c1b3d7150e39631fb3b.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.0_3baaa949987defba2946e72dfd414c91494fcaca/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4237a49ed3a5e120c393a772b5c08e0546cd6861">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_6df1d6fc181106ef6b5dcdc4633b87f9c26454b3/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_036ca8a76511c0c0741a51a402c532272c53e505.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.20.0/1d086ac5756475ddf451af2e2df6e288d18608ca/google-oauth-client-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1d086ac5756475ddf451af2e2df6e288d18608ca">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-oauth-client-1.20.0_abd892a4893cafc29066327d144438cc0fc7de6a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.0_4aedd82781989eb52b5f8366d8473a9d6e4f9a39/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.0.0_dad45ff9555f35e3e7d9f193603855ce62844f0f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/core/1.54.0.0/de79c5f8c67234f0d0073e00ed1f3bab0e5d1e67/core-1.54.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="de79c5f8c67234f0d0073e00ed1f3bab0e5d1e67">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/core-1.54.0.0_ab169b86584348a9dfc23ed72d74469a3d247d4a/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.oauth-client/google-oauth-client/1.20.0/1d086ac5756475ddf451af2e2df6e288d18608ca/google-oauth-client-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="1d086ac5756475ddf451af2e2df6e288d18608ca">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-oauth-client-1.20.0_abd892a4893cafc29066327d144438cc0fc7de6a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client-android/1.20.0/5673179575c32b69a474334255c3044adf18d40/google-api-client-android-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="05673179575c32b69a474334255c3044adf18d40">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-api-client-android-1.20.0_2de6b50fd98061c73de7179adf2e4817a5d9f6aa.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client-android/1.20.0/5673179575c32b69a474334255c3044adf18d40/google-api-client-android-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="05673179575c32b69a474334255c3044adf18d40">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-api-client-android-1.20.0_2de6b50fd98061c73de7179adf2e4817a5d9f6aa/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/pg/1.54.0.0/19307dbe2f1563e50b631e1fac9dee974934f415/pg-1.54.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="19307dbe2f1563e50b631e1fac9dee974934f415">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/pg-1.54.0.0_8cb518e91f260a7d763b3b2c42aadef1cd02e415/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f4f7ccf531efc96ea47e6e15087718d8c7cde185">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_9dfa0cf1410035f145f7b0668cbcbd8bb89fcfd7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.guava/guava-jdk5/13.0/381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7/guava-jdk5-13.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/guava-jdk5-13.0_0289fadb8a4e461f04fbd210d89f00a8c78baa6a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_b6ab6c997a8d655d3c0fc5ce2af41989bbd6f563.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_67b6552a2545e301a156f6ab2730a6890bc503fc.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.20.0/93d82db2bca534960253f43424b2ba9d7638b4d2/google-http-client-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="93d82db2bca534960253f43424b2ba9d7638b4d2">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-http-client-1.20.0_fb02701c13872bf66314afb5925b2f6dc19740ab/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.madgag.spongycastle/pkix/1.54.0.0/183d77545a164f8fcf5a88b27af1f33670004eb6/pkix-1.54.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="183d77545a164f8fcf5a88b27af1f33670004eb6">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/pkix-1.54.0.0_8fa9af430144da368d9a73d88ea6332d13dfdb0d/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client/1.20.0/93d82db2bca534960253f43424b2ba9d7638b4d2/google-http-client-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="93d82db2bca534960253f43424b2ba9d7638b4d2">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-http-client-1.20.0_fb02701c13872bf66314afb5925b2f6dc19740ab.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.0.0_3c7f9f9f72b21c99ef25ce8e22426256b33fe00e/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="26674000177e45447a0326a6ad84612761199a13">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_46e49268a5fb31a0c6c34489dd5e13790450c696.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.0_f1ed96bf7b9f512d6cc8955b17dc2708df7ade7a/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_72d898ec4347dc08ba86ddb168ce61d98b26b874.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="348c1eb9b864aed1a08a8db86df61c9ae6cbeeb7">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5d47c0692ca21cdd589ddc7d26b50a64c3cd7495/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.0_7cfef472cfa3f4d3f0ed6134b474134039e0d7cd/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_7cfef472cfa3f4d3f0ed6134b474134039e0d7cd.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.0_2ef24e18703cbefb6be75078d38f60f7ea60eeff/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.0_58d822a4c7d5a72e4ca95fc11322f38e3f2e8bdc/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.20.0/d3e66209ae9e749b2d6833761e7885f60f285564/google-api-client-1.20.0.jar"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client\1.20.0\d3e66209ae9e749b2d6833761e7885f60f285564\google-api-client-1.20.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="d3e66209ae9e749b2d6833761e7885f60f285564">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-api-client-1.20.0_eeda964567ff67749e92d04d8977f5194ef9f9d0/classes.dex" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-api-client-1.20.0_32b85097c150bcc6389077fabd551a6f17179321\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.0_ec3f28b23c587853c73d89180809a6810ddc8ddf/classes.dex" />
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.0_d28e7f552be46acef1bec41734b6aead9a5ea5e0\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.0_6b200e34d2797754991883ed29a97bd2249194d0/classes.dex" />
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.0_e473c304977c7cac1c8c167bd2fbddaf7ffc154f\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_5595f2723cad37fad55cd803861a0a501092e2ba/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.api-client/google-api-client/1.20.0/d3e66209ae9e749b2d6833761e7885f60f285564/google-api-client-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d3e66209ae9e749b2d6833761e7885f60f285564">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-api-client-1.20.0_eeda964567ff67749e92d04d8977f5194ef9f9d0.jar" />
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_2e34e5d7f4ef8bfb2932921ba1067b594a0612fd\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.0_1601fcd59971f980af205b40afcc64d44f641dc9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-android/1.20.0/313dc99a7963523871495897ca11aa8472b3c6fd/google-http-client-android-1.20.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="313dc99a7963523871495897ca11aa8472b3c6fd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/qrgenerator/build/intermediates/transforms/dex/debug/folders/1000/10/google-http-client-android-1.20.0_69823f225ff19d18c89eedbd1468327e5406d02b/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_e9f5ef374895b00888143cead9443d0cdc9c31bf.jar" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_702dec8425d2abe5b8bc540d80d9d0c13acd8c87\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.http-client/google-http-client-android/1.20.0/313dc99a7963523871495897ca11aa8472b3c6fd/google-http-client-android-1.20.0.jar"
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="313dc99a7963523871495897ca11aa8472b3c6fd">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/google-http-client-android-1.20.0_69823f225ff19d18c89eedbd1468327e5406d02b.jar" />
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.0_390ef45a17490c038e9b774a7e513094ae9749b0\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.0.0_012ee5a285a81d76e1486d39e7e9f73c09abe939\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\2.0.1\516c03b21d50a644d538de0f0369c620989cd8f0\jsr305-2.0.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_af614b32c005711cb7b8e1aa4da4b6a5f191ad68.jar" />
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsr305-2.0.1_6d76e109092b6fc2d70b2fbbd5fd17d34462aaf6\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\design\25.0.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/dharuqueshil/SIRS-SmartRestaurant/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_00891a044d69098b4cc81a938b76c703c3ca4677.jar" />
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.0.0_c5334695c99a6abcd7651ace6fe0f0f9fd8357aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.api-client\google-api-client-android\1.20.0\5673179575c32b69a474334255c3044adf18d40\google-api-client-android-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="05673179575c32b69a474334255c3044adf18d40">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-api-client-android-1.20.0_e4c572a79a7cbbfcb66f966047de7f3e221d5d84\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client\1.20.0\93d82db2bca534960253f43424b2ba9d7638b4d2\google-http-client-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93d82db2bca534960253f43424b2ba9d7638b4d2">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-1.20.0_78011d8d821d95888191e00e1a0a1661034cf32b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.0_097b47032d25fe11a6487ddc67e3b377e363d11f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\libs\internal_impl-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.0_6052f6317ef3842ff798d7d3f04befcee37bd6df\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-android\1.20.0\313dc99a7963523871495897ca11aa8472b3c6fd\google-http-client-android-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="313dc99a7963523871495897ca11aa8472b3c6fd">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-android-1.20.0_65868df738445b5ec9b738fecf2878b25425ee7d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.http-client\google-http-client-jackson2\1.20.0\2408070b2abec043624d35b35e30450f1b663858\google-http-client-jackson2-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2408070b2abec043624d35b35e30450f1b663858">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-http-client-jackson2-1.20.0_86648d2c456fc27b8948a0c797637501ea1d169d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.guava\guava-jdk5\13.0\381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7\guava-jdk5-13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="381ae6c8add7c98e9bcddb1e0b898400cd6fc3f7">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\guava-jdk5-13.0_8c844423981f1e3dfbd28d9d46a3d365e53e2635\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.oauth-client\google-oauth-client\1.20.0\1d086ac5756475ddf451af2e2df6e288d18608ca\google-oauth-client-1.20.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1d086ac5756475ddf451af2e2df6e288d18608ca">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-oauth-client-1.20.0_c6fd83b4df662ba7585d7bc9d5a1eeecfc1a2efc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="129faf925cb8383572b83fae573a841dbb891de3">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_37e7d598ecd392288902ac595d266e895545e523\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\me.dm7.barcodescanner\zxing\1.8.4\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="68ef1daf85c69fca8fddf7bbb947fc51cc9f8ca3">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.dm7.barcodescanner-zxing-1.8.4_948159592f2fd2b91b67a18b91e9efa9eae91534\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.0_9d6e5aae0f2078c74233150a97d32a72e2cab597\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9379385b21cf8c273bb937c53206d877accdb136">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_bb58e3d9acbb368f5fb074f46883c0936704c303\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.0_784baa6abf728058befbf2ea79798540fca6bd6a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.0_dedcc8fb77488b4712cc984234dbbb9ec3c9579d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.google.zxing\core\3.2.1\2287494d4f5f9f3a9a2bb6980e3f32053721b315\core-3.2.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\core-3.2.1_ac29f54e22ac199d30b6b5c2b9d43866d305bae9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.0_f8f3af8c19866ee039109da9b7706ad40916d8c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Miguel\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.1.3\f6c3aed1cdfa21b5c1737c915186ea93a95a58bd\jackson-core-2.1.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f6c3aed1cdfa21b5c1737c915186ea93a95a58bd">
+        <dex dex="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant\app\build\intermediates\transforms\dex\debug\folders\1000\10\jackson-core-2.1.3_2eec2b87d0b86abf862c52dc064e5ccf81d2a065\classes.dex" />
     </item>
 
 </items>

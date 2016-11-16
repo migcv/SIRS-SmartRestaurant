@@ -1,20 +1,12 @@
 package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
-import android.app.AlertDialog;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.zxing.Result;
-
-import java.io.IOException;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
@@ -34,11 +26,8 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();         // Start camera
 
-        if(getText() != null){
-            Intent food = new Intent(this, Food.class);
-            startActivity(food);
-        }
-
+        Intent activity = new Intent(this, FragmentActivity.class);
+        startActivity(activity);
     }
 
     public void QrScanner(View view){
@@ -72,15 +61,10 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
 
         setText(rawResult.getText());
 
+        Intent activity = new Intent(this, FragmentActivity.class);
+        startActivity(activity);
 
         // If you would like to resume scanning, call this method below:
         // mScannerView.resumeCameraPreview(this);
-    }
-
-    public void FoodMenu(View view) {
-        if(getText() != null){
-            Intent food = new Intent(this, Food.class);
-            startActivity(food);
-        }
     }
 }
