@@ -114,5 +114,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void QRScanner(View view) {
         Intent scanner = new Intent(this, QRScannerActivity.class);
         startActivity(scanner);
+
     }
 }

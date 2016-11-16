@@ -1,7 +1,9 @@
 package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 
 public class QRScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
+    public String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,12 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
 
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();         // Start camera
+
+        if(getText() != null){
+            Intent food = new Intent(this, Food.class);
+            startActivity(food);
+        }
+
     }
 
     public void QrScanner(View view){
@@ -39,7 +48,6 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
 
         mScannerView.setResultHandler(this); // Register ourselves as a handler for scan results.
         mScannerView.startCamera();         // Start camera
-
     }
 
     @Override
@@ -48,6 +56,13 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         mScannerView.stopCamera();           // Stop camera on pause
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     @Override
     public void handleResult(Result rawResult) {
@@ -55,7 +70,17 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         Log.e("handler", rawResult.getText()); // Prints scan results
         Log.e("handler", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode)
 
+        setText(rawResult.getText());
+
+
         // If you would like to resume scanning, call this method below:
         // mScannerView.resumeCameraPreview(this);
+    }
+
+    public void FoodMenu(View view) {
+        if(getText() != null){
+            Intent food = new Intent(this, Food.class);
+            startActivity(food);
+        }
     }
 }

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="payment_server-android-endpoints">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/payment_server/build/libs/payment_server-android-endpoints.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

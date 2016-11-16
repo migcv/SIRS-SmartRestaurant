@@ -1,0 +1,276 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.activities.food"
+    app:layout_collapseParallaxMultiplier="1.0"
+    app:layout_scrollFlags="scroll"
+    android:baselineAligned="false">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?android:attr/colorBackground">
+
+        <TextView
+            android:text="Burgers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Burgers"
+            android:typeface="normal"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textColor="?attr/actionModeSplitBackground"
+            android:layout_marginLeft="20px" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Perfect - 7.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bPerfect"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelperfectButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/perfectButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="B' Toque - 7€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bToque"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:fontFamily="casual"
+            android:textSize="20sp"
+            android:textStyle="normal|bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DeltoqueButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/toqueButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Happy - 7.5€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bHappy"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:fontFamily="casual" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelhappyButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/happyButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Cool - 6.5€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bCool"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:fontFamily="casual" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelcoolButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/coolButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Smart - 7€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bSmart"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:fontFamily="casual" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelsmartButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/smartButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Spicy - 6.5€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bSpicy"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:fontFamily="casual" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelspicyButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/spicyButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:text="B' Stronger - 6.5€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bStronger"
+            android:elevation="11dp"
+            android:layout_marginLeft="20px"
+            android:layout_marginTop="40px"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:textStyle="normal|bold" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_delete"
+            android:id="@+id/DelStrongerButton"
+            android:background="@android:drawable/ic_delete"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_input_add"
+            android:id="@+id/strongerButton"
+            android:background="@android:drawable/ic_input_add"
+            android:layout_marginTop="40px"
+            android:layout_marginLeft="40dp" />
+    </TableRow>
+
+</TableLayout>
+
