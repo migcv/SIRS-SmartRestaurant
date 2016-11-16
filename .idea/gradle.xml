@@ -11,8 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/payment_server" />
-            <option value="$PROJECT_DIR$/qrgenerator" />
             <option value="$PROJECT_DIR$/restaurant_server" />
+            <option value="$PROJECT_DIR$/table" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

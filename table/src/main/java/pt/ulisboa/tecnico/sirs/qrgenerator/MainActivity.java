@@ -1,5 +1,8 @@
 package pt.ulisboa.tecnico.sirs.qrgenerator;
 
+import android.content.Context;
+import android.support.v4.util.Pair;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +12,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.encoder.QRCode;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,12 +24,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Table table = new Table();
+        table.execute(new Pair<Context, String>(this, ""));
+
+        while(table.getQr() == null);
+
         getID();
-        // create thread to avoid ANR Exception
+       // create thread to avoid ANR Exception
         Thread t = new Thread(new Runnable() {
             public void run() {
                 // this is the msg which will be encode in QRcode
-                QRcode="This is My first QR code";
+                QRcode = table.getQr();
+
                 try {
                     synchronized (this) {
                         wait(5000);

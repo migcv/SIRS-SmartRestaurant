@@ -1,1 +1,1 @@
-include ':app', ':qrgenerator', ':restaurant_server', ':payment_server'
+include ':app', ':table', ':restaurant_server', ':payment_server'
