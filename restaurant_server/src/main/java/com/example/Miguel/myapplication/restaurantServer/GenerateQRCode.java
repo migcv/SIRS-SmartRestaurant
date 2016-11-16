@@ -65,6 +65,13 @@ public class GenerateQRCode {
     }
 
 
+    public boolean verifyQR(String name){
+        for(int i = 0; i < tableInfo.size(); i++){
+            if(tableInfo.get(i).get(1).toString().equals(name))
+                return true;
+        }
+        return false;
+    }
 
 
 }
