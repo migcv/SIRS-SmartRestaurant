@@ -20,10 +20,20 @@ import android.view.MenuItem;
 
 import com.google.zxing.Result;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private boolean connected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
 
     @Override
@@ -94,8 +103,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void QRScanner(View view) {
-        Intent scanner = new Intent(this, QRScannerActivity.class);
-        startActivity(scanner);
-
+        //Intent scanner = new Intent(this, QRScannerActivity.class);
+        //startActivity(scanner);
+        System.out.println("Creating Thread!!");
+        Thread cThread = new Thread(new ClientThread());
+        cThread.start();
     }
+
+    public class ClientThread implements Runnable {
+
+        public void run() {
+            try {
+                System.out.println("Connecting!!!");
+                InetAddress serverAddr = InetAddress.getByName("46.189.135.140");
+                Socket socket = new Socket(serverAddr, 10000);
+                System.out.println("Connected!!!");
+                connected = true;
+                //while (connected) {
+                    try {
+                        System.out.println("Receiving message!!!!");
+                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        String s;
+                        while ((s=in.readLine())!=null)
+                        {
+                            System.out.println("MESSAGE=" + s);
+                        }
+                    } catch (Exception e) {
+                        Log.e("ClientActivity", "S: Error", e);
+                    }
+                //}
+                socket.close();
+                System.out.println("Socket closed!!!!");
+            } catch (Exception e) {
+                Log.e("ClientActivity", "C: Error", e);
+                connected = false;
+            }
+        }
+    }
+
 }

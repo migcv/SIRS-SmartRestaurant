@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b56cd96e-117e-4a17-aa1b-8acca9786e61" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/Response.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$RefreshQR.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/fileSnapshots.bin" />
@@ -11,86 +9,40 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.14.1/tasks/_table_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/client-libs/myApi-v1-java.zip" afterPath="$PROJECT_DIR$/payment_server/build/client-libs/myApi-v1-java.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/libs/payment_server-android-endpoints.jar" afterPath="$PROJECT_DIR$/payment_server/build/libs/payment_server-android-endpoints.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$Builder.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$Builder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$SayHi.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$SayHi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$SendQRCode.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$SendQRCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$VerifyQRCode.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi$VerifyQRCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/endpointsSrc/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/main/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/main/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/classes/main/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.class" afterPath="$PROJECT_DIR$/restaurant_server/build/classes/main/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/client-libs/myApi-v1-java.zip" afterPath="$PROJECT_DIR$/restaurant_server/build/client-libs/myApi-v1-java.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/classes/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.class" afterPath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/classes/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/classes/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.class" afterPath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/classes/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/lib/payment_server-android-endpoints.jar" afterPath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/lib/payment_server-android-endpoints.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/libs/restaurant_server-android-endpoints.jar" afterPath="$PROJECT_DIR$/restaurant_server/build/libs/restaurant_server-android-endpoints.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/libs/restaurant_server.war" afterPath="$PROJECT_DIR$/restaurant_server/build/libs/restaurant_server.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/core_1_8_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/core_1_8_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/design_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/design_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_core_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/espresso_idling_resource_2_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/exposed_instrumentation_api_publish_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/rules_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runner_0_5.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_compat_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_ui_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_core_utils_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_fragment_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_media_compat_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/transition_25_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/transition_25_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/zxing_1_8_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/zxing_1_8_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SIRS-SmartRestaurant.iml" afterPath="$PROJECT_DIR$/SIRS-SmartRestaurant.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApi.java" afterPath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequest.java" afterPath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequestInitializer.java" afterPath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequestInitializer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiScopes.java" afterPath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/MyApiScopes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/model/MyBean.java" afterPath="$PROJECT_DIR$/payment_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/payment_server/myApi/model/MyBean.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/LICENSE.txt" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/build.gradle" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/proguard-google-api-client.txt" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/proguard-google-api-client.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/readme.html" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/readme.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApi.java" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequest.java" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequestInitializer.java" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiRequestInitializer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiScopes.java" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/MyApiScopes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/model/MyBean.java" afterPath="$PROJECT_DIR$/payment_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/payment_server/myApi/model/MyBean.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/payment_server/payment_server.iml" afterPath="$PROJECT_DIR$/payment_server/payment_server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/discovery-docs/myApi-v1-rest.discovery" afterPath="$PROJECT_DIR$/restaurant_server/build/discovery-docs/myApi-v1-rest.discovery" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/discovery-docs/myApi-v1-rpc.discovery" afterPath="$PROJECT_DIR$/restaurant_server/build/discovery-docs/myApi-v1-rpc.discovery" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/myApi-v1-rest.discovery" afterPath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/myApi-v1-rest.discovery" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/myApi-v1-rpc.discovery" afterPath="$PROJECT_DIR$/restaurant_server/build/exploded-app/WEB-INF/myApi-v1-rpc.discovery" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequest.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequestInitializer.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequestInitializer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiScopes.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiScopes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/model/Response.java" afterPath="$PROJECT_DIR$/restaurant_server/build/generated-source/endpoints/java/com/example/miguel/myapplication/restaurantserver/myApi/model/Response.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/LICENSE.txt" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/build.gradle" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/proguard-google-api-client.txt" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/proguard-google-api-client.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/readme.html" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/readme.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApi.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequest.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequestInitializer.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiRequestInitializer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiScopes.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/MyApiScopes.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/model/GenerateQRCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/restaurant_server.iml" afterPath="$PROJECT_DIR$/restaurant_server/restaurant_server.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java" afterPath="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java" afterPath="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java" afterPath="$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/model/Response.java" afterPath="$PROJECT_DIR$/restaurant_server/build/tmp/appengineEndpointsExpandClientLibs/myApi-v1-java.zip-unzipped/myApi/src/main/java/com/example/miguel/myapplication/restaurantserver/myApi/model/Response.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/table/table.iml" afterPath="$PROJECT_DIR$/table/table.iml" />
     </list>
     <ignored path="SIRS-SmartRestaurant.iws" />
@@ -125,16 +77,14 @@
     <favorites_list name="SIRS-SmartRestaurant" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="MyEndpoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+            <state relative-caret-position="544">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1038#1039#0" expanded="true" />
-                <element signature="e#1069#1070#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -150,12 +100,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QRScannerActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QRScannerActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="93" column="32" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
+            <state relative-caret-position="768">
+              <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="354">
+              <caret line="135" column="49" selection-start-line="135" selection-start-column="49" selection-end-line="135" selection-end-column="49" />
+              <folding>
+                <element signature="e#1666#1697#0" expanded="true" />
+                <element signature="e#1699#1731#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -163,11 +126,9 @@
       <file leaf-file-name="GenerateQRCode.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
+            <state relative-caret-position="884">
               <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
-              <folding>
-                <element signature="e#546#556#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -175,9 +136,11 @@
       <file leaf-file-name="Table.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-315">
+            <state relative-caret-position="391">
               <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -3319,7 +3282,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="8875857002981" />
-        <entry key="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant" value="8875857002981" />
+        <entry key="C:\Users\Miguel\Desktop\SIRS-SmartRestaurant" value="8876454209298" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3865,14 +3828,15 @@
         <option value="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java" />
         <option value="$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -3899,7 +3863,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -3907,66 +3871,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="SIRS-SmartRestaurant" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIRS-SmartRestaurant" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="table" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIRS-SmartRestaurant" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="table" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIRS-SmartRestaurant" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="table" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qrgenerator" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SIRS-SmartRestaurant" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restaurant_server" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.NonAndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="restaurantServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -4035,8 +3939,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4435,41 +4339,50 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5053305" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.4969743" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850778" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32850778" sideWeight="0.4946695" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.4978678" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5030257" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24946696" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935154" sideWeight="0.4969743" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -4488,40 +4401,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/RestaurantEndpoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-315">
-          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+        <state relative-caret-position="544">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1038#1039#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
-          <folding>
-            <element signature="e#546#556#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -4536,9 +4421,90 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="93" column="32" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/RestaurantEndpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/table/src/main/java/pt/ulisboa/tecnico/sirs/qrgenerator/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="35" column="51" selection-start-line="35" selection-start-column="51" selection-end-line="35" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/MyEndpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/GenerateQRCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/restaurant_server/src/main/java/com/example/Miguel/myapplication/restaurantServer/Response.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/QRScannerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/ulisboa/tecnico/sirs/smartrestaurant/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="135" column="49" selection-start-line="135" selection-start-column="49" selection-end-line="135" selection-end-column="49" />
+          <folding>
+            <element signature="e#1666#1697#0" expanded="true" />
+            <element signature="e#1699#1731#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
