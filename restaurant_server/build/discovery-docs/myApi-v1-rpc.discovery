@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/AxvZSXI-gfbWJvUF8oH9-ihZI3c\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/b-2Qe3NAfOhLUugsSGnuFZVHOyE\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -89,31 +89,22 @@
      "format": "int32"
     },
     "uniqueIDTable": {
-     "type": "string"
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "Response": {
+   "id": "Response",
+   "type": "object",
+   "properties": {
+    "result": {
+     "type": "boolean"
     }
    }
   }
  },
  "methods": {
-  "myApi.refreshQR": {
-   "id": "myApi.refreshQR",
-   "parameters": {
-    "name": {
-     "type": "integer",
-     "required": true,
-     "format": "int32"
-    }
-   },
-   "parameterOrder": [
-    "name"
-   ],
-   "returns": {
-    "$ref": "GenerateQRCode"
-   },
-   "scopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
-   ]
-  },
   "myApi.sayHi": {
    "id": "myApi.sayHi",
    "parameters": {
@@ -153,7 +144,7 @@
     "name"
    ],
    "returns": {
-    "$ref": "GenerateQRCode"
+    "$ref": "Response"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

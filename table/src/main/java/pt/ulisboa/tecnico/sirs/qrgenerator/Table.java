@@ -33,7 +33,7 @@ public class Table extends AsyncTask<Pair<Context, String>, Void, String> {
 
         if (myApiService == null) {  // Only do this once
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-            .setRootUrl("https://restauranteserver.appspot.com/_ah/api/");
+            .setRootUrl("https://long-victor-147017.appspot.com/_ah/api/");
 
             /*MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -50,23 +50,23 @@ public class Table extends AsyncTask<Pair<Context, String>, Void, String> {
                 // end options for devappserver*/
 
                 myApiService = builder.build();
-            }
-
-            context = params[0].first;
-            try {
-                List<String> inf = myApiService.sendQRCode().execute().getInfo();
-                qr = inf.get(0);
-                tableID = Integer.parseInt(inf.get(1));
-                return qr;
-            } catch (IOException e) {
-                return e.getMessage();
-            }
         }
 
-        @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG);
-            System.out.println(result);
+        context = params[0].first;
+        try {
+            List<String> inf = myApiService.sendQRCode().execute().getInfo();
+            qr = inf.get(0);
+            tableID = Integer.parseInt(inf.get(1));
+            return qr;
+        } catch (IOException e) {
+            return e.getMessage();
         }
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        Toast.makeText(context, result, Toast.LENGTH_LONG);
+        System.out.println(result);
+    }
 }
 

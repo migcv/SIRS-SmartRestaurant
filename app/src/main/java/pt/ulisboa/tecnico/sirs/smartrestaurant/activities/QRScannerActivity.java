@@ -15,9 +15,11 @@ import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.common.primitives.Booleans;
 import com.google.zxing.Result;
 
 import java.io.IOException;
+import java.util.List;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
@@ -26,6 +28,8 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
     private ZXingScannerView mScannerView;
     public String text;
     public String serverQR = null;
+    public boolean responded = false;
+    public boolean verRes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,10 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         this.text = text;
     }
 
+    public void test() {
+        new Endpoint().execute(new Pair<Context, String>(this, "Manfred"));
+    }
+
     @Override
     public void handleResult(Result rawResult) {
         // Do something with the result here
@@ -76,34 +84,63 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
 
         System.out.println("Esperando");
         //while(serverQR == null);
-        EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Mkvjdfkvkfvhjsdkjhfkdshfksdhfkh"));
 
-        Intent activity = new Intent(this, FragmentActivity.class);
-        startActivity(activity);
+        mScannerView.stopCamera();
+
+        new Endpoint().execute(new Pair<Context, String>(this, rawResult.getText()));
+        //while(!responded);
+        try {
+            Thread.sleep(4000);
+        } catch (Exception e) {}
+        System.out.println("Esperandsdasdasdasdo323" + verRes);
+            Intent activity = new Intent(this, FragmentActivity.class);
+            startActivity(activity);
+
 
         // If you would like to resume scanning, call this method below:
         // mScannerView.resumeCameraPreview(this);
     }
 
+    private class Endpoint extends AsyncTask<Pair<Context, String>, Void, Boolean> {
+        private MyApi myApiService = null;
+        private Context context;
+        private String name;
 
-        @Override
-        protected String doInBackground(String... params) {
+        protected Boolean doInBackground(Pair<Context, String>... params) {
+            if(myApiService == null) {
+                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl("https://long-victor-147017.appspot.com/_ah/api/");
 
-            String name = params[0];
+                /*MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
+                    new AndroidJsonFactory(), null)
+                        .setRootUrl("http://10.0.2.2:8080/_ah/api/")
+                        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                            @Override
+                            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                                abstractGoogleClientRequest.setDisableGZipContent(true);
+                            }
+                        });
+                // end options for devappserver*/
 
+                myApiService = builder.build();
+            }
+
+            context = params[0].first;
+            name = params[0].second;
             try {
-                return myApiService.verifyQRCode(name).execute().getData();
+                return myApiService.verifyQRCode(name).execute().getResult();
             } catch (IOException e) {
-                return e.getMessage();
+                return null;
             }
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-            serverQR = result;
+        protected void onPostExecute(Boolean result) {
+            //Toast.makeText(context, result, Toast.LENGTH_LONG);
+            responded = true;
+            verRes = result;
+            System.out.println("Resultado: " + verRes + "|" + responded);
         }
+
     }
-
-
 }

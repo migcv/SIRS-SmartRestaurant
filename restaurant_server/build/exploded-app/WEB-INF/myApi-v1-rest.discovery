@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/AxvZSXI-gfbWJvUF8oH9-ihZI3c\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/b-2Qe3NAfOhLUugsSGnuFZVHOyE\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -91,34 +91,22 @@
      "format": "int32"
     },
     "uniqueIDTable": {
-     "type": "string"
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "Response": {
+   "id": "Response",
+   "type": "object",
+   "properties": {
+    "result": {
+     "type": "boolean"
     }
    }
   }
  },
  "methods": {
-  "refreshQR": {
-   "id": "myApi.refreshQR",
-   "path": "refreshQR/{name}",
-   "httpMethod": "POST",
-   "parameters": {
-    "name": {
-     "type": "integer",
-     "required": true,
-     "format": "int32",
-     "location": "path"
-    }
-   },
-   "parameterOrder": [
-    "name"
-   ],
-   "response": {
-    "$ref": "GenerateQRCode"
-   },
-   "scopes": [
-    "https://www.googleapis.com/auth/userinfo.email"
-   ]
-  },
   "sayHi": {
    "id": "myApi.sayHi",
    "path": "sayHi/{name}",
@@ -166,7 +154,7 @@
     "name"
    ],
    "response": {
-    "$ref": "GenerateQRCode"
+    "$ref": "Response"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

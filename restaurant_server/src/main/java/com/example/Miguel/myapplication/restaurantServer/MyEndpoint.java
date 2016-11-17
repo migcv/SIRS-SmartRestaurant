@@ -24,36 +24,25 @@ import com.google.api.server.spi.config.Named;
         )
 )
 public class MyEndpoint {
+    GenerateQRCode response = new GenerateQRCode();
 
-    /**
-     * A simple endpoint method that takes a name and says Hi back
-     */
     @ApiMethod(name = "sayHi")
     public GenerateQRCode sayHi(@Named("name") String name) {
-        GenerateQRCode response = new GenerateQRCode();
-
         return response;
     }
 
     @ApiMethod(name = "sendQRCode")
     public GenerateQRCode sendQRCode() {
-        GenerateQRCode response = new GenerateQRCode();
         response.sendToTable();
         return response;
     }
 
-    @ApiMethod(name = "refreshQR")
-    public GenerateQRCode refreshQR(@Named("name") int id) {
-        GenerateQRCode response = new GenerateQRCode();
-        response.sentQR(id);
-        return response;
-    }
-
     @ApiMethod(name = "verifyQRCode")
-    public GenerateQRCode verifyQRCode(@Named("name") String name) {
-        GenerateQRCode response = new GenerateQRCode();
-        response.verifyQR(name);
-        return response;
+    public Response verifyQRCode(@Named("name") String name) {
+        Response res = new Response();
+        res.result = response.verifyQR(name);
+
+        return res;
     }
 
 
