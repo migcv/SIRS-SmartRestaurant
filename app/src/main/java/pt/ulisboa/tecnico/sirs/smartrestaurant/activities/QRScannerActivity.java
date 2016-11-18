@@ -8,18 +8,23 @@ import android.view.View;
 
 import com.google.zxing.Result;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 
 public class QRScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     public String qrcode;
     private boolean connected = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +77,22 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         System.out.println("Creating Thread!!");
         Thread cThread = new Thread(new QRScannerActivity.ClientThread());
         cThread.start();
+        try{
+            cThread.join();
+        }catch(InterruptedException e){
 
-        mScannerView.stopCamera();
+        }
 
-        Intent activity = new Intent(this, FragmentActivity.class);
-        startActivity(activity);
+        if(Customer.getTableID() != -1){
+            mScannerView.stopCamera();
+            Intent activity = new Intent(this, FragmentActivity.class);
+            startActivity(activity);
+        }
+        else{
+            mScannerView.stopCamera();
+            Intent activity = new Intent(this, MainActivity.class);
+            startActivity(activity);
+        }
 
         // If you would like to resume scanning, call this method below:
         // mScannerView.resumeCameraPreview(this);
@@ -99,11 +115,37 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                 String str = getQrcode();
 
                 try {
+                    //Send QRCode string
                     System.out.println("Sending message!!!!");
                     dOut = new DataOutputStream(socket.getOutputStream());
                     dOut.writeBytes(str);
                     dOut.flush(); // Send off the data
-                    dOut.close();
+
+                    //Receive tableID
+                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    String s;
+                    while ((s=in.readLine())!=null){
+                        if (Integer.parseInt(s) > 0) {
+                            Customer.setTableID(Integer.parseInt(s));
+                            System.out.println("MESSAGECorrect=" + s);
+                        }
+                        else
+                            System.out.println("MESSAGE=" + s);
+
+                    }
+
+                    //Receive customerID
+                    BufferedReader incus = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    String id;
+                    while ((id=incus.readLine())!=null){
+                        if (Integer.parseInt(id) > 0) {
+                            Customer.setCustomerID(Integer.parseInt(id));
+                            System.out.println("MESSAGECorrect=" + id);
+                        }
+                        else
+                            System.out.println("MESSAGE=" + id);
+
+                    }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }

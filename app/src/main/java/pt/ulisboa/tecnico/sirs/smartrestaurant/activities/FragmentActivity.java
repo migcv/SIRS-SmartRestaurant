@@ -5,6 +5,8 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,11 +16,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectOutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.Map;
+
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.*;
 
 public class FragmentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private boolean connected = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +45,9 @@ public class FragmentActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                System.out.println("Creating Thread!!");
+                Thread cThread = new Thread(new FragmentActivity.ClientThread());
+                cThread.start();
             }
         });
 
@@ -99,5 +114,44 @@ public class FragmentActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public class ClientThread implements Runnable {
+
+        public void run() {
+            try {
+                System.out.println("Connecting!!!");
+                InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
+                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
+
+                Socket socket = new Socket(serverAddr, 10002);
+
+                System.out.println("Connected!!!");
+                connected = true;
+                ArrayMap<String, Integer> order = Customer.getOrder().getOrders();
+                DataOutputStream oos = null;
+                String o = "";
+
+                try {
+                    //Send Order
+                    for (Map.Entry<String,Integer> entry : order.entrySet()) {
+                        String food = entry.getKey();
+                        int quantity = entry.getValue();
+                        o += food + " " + quantity + " ";
+                    }
+                    oos = new DataOutputStream(socket.getOutputStream());
+                    oos.writeBytes(o);
+                    oos.flush();
+                } catch (Exception e) {
+                    Log.e("ClientActivity", "S: Error", e);
+                }
+                socket.close();
+                System.out.println("Socket closed!!!!");
+            } catch (Exception e) {
+                Log.e("ClientActivity", "C: Error", e);
+                connected = false;
+            }
+        }
     }
 }
