@@ -1,39 +1,19 @@
 package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
-import android.util.Pair;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.google.zxing.Result;
-
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.InetAddress;
-import java.net.Socket;
-
-import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private boolean connected = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,42 +83,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void QRScanner(View view) {
-        //Intent scanner = new Intent(this, QRScannerActivity.class);
-        //startActivity(scanner);
-        System.out.println("Creating Thread!!");
-        Thread cThread = new Thread(new ClientThread());
-        cThread.start();
+        Intent scanner = new Intent(this, QRScannerActivity.class);
+        startActivity(scanner);
+
     }
-
-    public class ClientThread implements Runnable {
-
-        public void run() {
-            try {
-                System.out.println("Connecting!!!");
-                InetAddress serverAddr = InetAddress.getByName("46.189.135.140");
-                Socket socket = new Socket(serverAddr, 10000);
-                System.out.println("Connected!!!");
-                connected = true;
-                //while (connected) {
-                    try {
-                        System.out.println("Receiving message!!!!");
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        String s;
-                        while ((s=in.readLine())!=null)
-                        {
-                            System.out.println("MESSAGE=" + s);
-                        }
-                    } catch (Exception e) {
-                        Log.e("ClientActivity", "S: Error", e);
-                    }
-                //}
-                socket.close();
-                System.out.println("Socket closed!!!!");
-            } catch (Exception e) {
-                Log.e("ClientActivity", "C: Error", e);
-                connected = false;
-            }
-        }
-    }
-
 }
