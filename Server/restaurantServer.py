@@ -23,7 +23,7 @@ def createTable(): # Creates a new table with an ID, QRCode and n_seats
 	
 	infoTable.append(idSeats)
 
-	return qrcodeString
+	return tableID, qrcodeString, seats
 # END of createTable()
 
 def sendQRCodeSocket():	# Server send QRCode string to client
@@ -39,24 +39,26 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 	while 1:
 		(clientsocket, address) = serversocket.accept()
 		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
-		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)
 		
 		connstream = ssl.wrap_socket(clientsocket,
                              server_side=True,
                              certfile="server.crt",
                              keyfile="server.key",
-		             ssl_version=ssl.PROTOCOL_SSLv23)		
-	
-		qr = createTable()
+		             ssl_version=ssl.PROTOCOL_TLSv1)		
+
+		tableID, qr, nseats = createTable()
+		print "<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats)
 		print "<{}>:Sending QRCode <{}>".format(servicename, qr)
-		securesocket.send(qr)
+		connstream.send(qr)
 	
-		clientsocket.close()	
+		connstream.close()
+		clientsocket.close()
 # END of sendQRCodeSocket()
 
 def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 	port = 10001
 	servicename = "ReceiveQR"
+	global clientID
 	
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
@@ -67,21 +69,22 @@ def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 	while 1:
 		(clientsocket, address) = serversocket.accept()
 		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
-		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)	
 		
 		data = clientsocket.recv(24)
 		print "<{}>:Received <{}>".format(servicename, data)
 		exists = False
 		for i in infoTable:
-			#print "IN: <{}> | Received: <{}>".format(i[1], data)
 			if i[1] == data :
 				print "<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i[0], data)
+				print "<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i[0])
+				clientsTable.update({clientID : i[0]})
+				clientsocket.send("{}:{}".format(clientID, i[0]))			
+				clientID += 1
 				exists = True
-				clientsocket.send(str(i[0]))		
 		if not exists :
 			print "<{}>:QRCode received DONT exists <{}> ".format(servicename, data)
 			clientsocket.send(str(-1))
-	
+
 		clientsocket.close()	
 # END of receiveQRCodeSocket()
 
@@ -100,9 +103,10 @@ def receiveOrderSocket(): # Server receives order from the Customer
 	
 		#ssl.wrap_socket(sock, keyfile=None, certfile=None, server_side=True, cert_reqs=CERT_NONE, 
 		#ssl_version=ssl.PROTOCOL_, ca_certs=None, do_handshake_on_connect=True, suppress_ragged_eofs=True, ciphers=None)
-	
+		
 		data = clientsocket.recv(2048)
-		print "<{}>:Received order <{}> from customer <{}>".format(servicename, data)
+		customerID = -1
+		print "<{}>:Received order <{}> from customer <{}>".format(servicename, data, customerID)
 		datasplited = data.split(',')
 		aux = []
 		for i in datasplited:
@@ -135,6 +139,8 @@ class myThread (threading.Thread):
 # END of myThread
 
 # MAIN PROGRAM -----------------------------------------------------------------------
+
+clientID = 1
 
 infoTable = [] 		# info about each table [tableID, QRCode, n_seats]
 clientsTable = {} 	# info where the client is seated {clientID : tableID}

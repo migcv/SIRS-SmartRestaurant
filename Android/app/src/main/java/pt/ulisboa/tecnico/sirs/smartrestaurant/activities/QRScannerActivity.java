@@ -121,30 +121,17 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                     dOut.writeBytes(str);
                     dOut.flush(); // Send off the data
 
-                    //Receive tableID
+                    //Receive clientID & tableID
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
-                    while ((s=in.readLine())!=null){
-                        if (Integer.parseInt(s) > 0) {
-                            Customer.setTableID(Integer.parseInt(s));
-                            System.out.println("MESSAGECorrect=" + s);
-                        }
-                        else
+                    while ((s=in.readLine())!=null) {
+                        String[] splitted = s.split(":");
+                        if (Integer.parseInt(splitted[0]) > 0) {
+                            Customer.setCustomerID(Integer.parseInt(splitted[0]));
+                            Customer.setTableID(Integer.parseInt(splitted[1]));
+                            System.out.println("<TabbleID>:MESSAGE Correct <" + splitted[0] + " | " + splitted[1] + ">");
+                        } else
                             System.out.println("MESSAGE=" + s);
-
-                    }
-
-                    //Receive customerID
-                    BufferedReader incus = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String id;
-                    while ((id=incus.readLine())!=null){
-                        if (Integer.parseInt(id) > 0) {
-                            Customer.setCustomerID(Integer.parseInt(id));
-                            System.out.println("MESSAGECorrect=" + id);
-                        }
-                        else
-                            System.out.println("MESSAGE=" + id);
-
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);

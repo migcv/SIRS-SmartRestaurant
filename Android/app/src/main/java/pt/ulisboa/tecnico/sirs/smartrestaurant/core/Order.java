@@ -20,8 +20,8 @@ public class Order {
 
     public void removeMenuItem(String item) {
         if(orderList.containsKey(item)) {
-            if(orderList.get(item) <= 0) {
-                orderList.put(item, 0);
+            if(orderList.get(item) - 1 <= 0) {
+                orderList.remove(item);
             }
             else {
                 orderList.put(item, orderList.get(item) - 1);
