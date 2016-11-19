@@ -28,22 +28,28 @@ def createTable(): # Creates a new table with an ID, QRCode and n_seats
 
 def sendQRCodeSocket():	# Server send QRCode string to client
 	port = 10000
-	servicename = "QRSend"
+	servicename = "SendQR"
 	
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
-	print"<{}> Port: {}".format(servicename, port)
+	print"<{}>:Port: {}".format(servicename, port)
 	
 	serversocket.listen(5)
 	print "<{}>:Listenning".format(servicename)
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "<{}>:Got a connection from <{}>".format(servicename, address)
+		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
 		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)
+		
+		connstream = ssl.wrap_socket(clientsocket,
+                             server_side=True,
+                             certfile="server.crt",
+                             keyfile="server.key",
+		             ssl_version=ssl.PROTOCOL_SSLv23)		
 	
 		qr = createTable()
 		print "<{}>:Sending QRCode <{}>".format(servicename, qr)
-		clientsocket.send(qr)
+		securesocket.send(qr)
 	
 		clientsocket.close()	
 # END of sendQRCodeSocket()
@@ -60,9 +66,9 @@ def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 	print "<{}>:Listenning".format(servicename)
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "<{}>:Got a connection from <{}>".format(servicename, address)
-		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)
-	
+		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)	
+		
 		data = clientsocket.recv(24)
 		print "<{}>:Received <{}>".format(servicename, data)
 		exists = False
@@ -90,12 +96,22 @@ def receiveOrderSocket(): # Server receives order from the Customer
 	print "<{}>:Listenning".format(servicename)
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "<{}>:Got a connection from <{}>".format(servicename, address)
-		#connstream = ssl.wrap_socket(clientsocket, server_side=True, certfile= certfile, keyfile= keyfile, ssl_version=ssl.PROTOCOL_TLSv1)
+		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+	
+		#ssl.wrap_socket(sock, keyfile=None, certfile=None, server_side=True, cert_reqs=CERT_NONE, 
+		#ssl_version=ssl.PROTOCOL_, ca_certs=None, do_handshake_on_connect=True, suppress_ragged_eofs=True, ciphers=None)
 	
 		data = clientsocket.recv(2048)
-		print "<{}>:Received order <{}>".format(servicename, data)
-		
+		print "<{}>:Received order <{}> from customer <{}>".format(servicename, data)
+		datasplited = data.split(',')
+		aux = []
+		for i in datasplited:
+			aux += i.split(' ')
+		orders = {}
+		i = 0
+		while i+1 < len(aux):
+			orders.update({aux[i] : aux[i+1]})
+			i += 2
 		clientsocket.close()	
 # END of receiveOrderSocket()
 
@@ -109,9 +125,9 @@ class myThread (threading.Thread):
 		self._stop.set()	
 	def run(self):
 		print "Starting " + self.name
-		if(self.name=="SendQRCode"):
+		if(self.name=="SendQR"):
 			sendQRCodeSocket()
-		if(self.name=="ReceiveQRCode"):
+		if(self.name=="ReceiveQR"):
 			receiveQRCodeSocket()
 		if(self.name=="ReceiveOrder"):
 			receiveOrderSocket()		
@@ -122,7 +138,7 @@ class myThread (threading.Thread):
 
 infoTable = [] 		# info about each table [tableID, QRCode, n_seats]
 clientsTable = {} 	# info where the client is seated {clientID : tableID}
-clientsOrders = {}	# Orders that each customer ordered {clientID, [orders...]}
+clientsOrders = {}	# Orders that each customer ordered {clientID : {order : quantity}}
 
 burgers = {"b'Perfect": 7.5, "b'Toque": 7.0, "b'Happy": 7.5, "b'Cool": 6.5, "b'Smart": 6.0, "b'Spicy": 6.5}
 drinks = {"Water": 1.5, "Coke": 1.5, "Lemonade": 1.5, "Wine": 1.0, "Beer": 1.0 }
@@ -130,16 +146,16 @@ deserts = {"b'Brownie": 3.0, "b'Cheese": 3.0}
 
 hostname = ''
 
-certfile = "cert.pem"	# Certifate file name
-keyfile = "key.pem"	# Public Key file name
+certificatefile = "restaurant.cer"	# Certifate file name
+keyfile = "key.pem"		# Public Key file name
 
 BUFFER = 1024
 
 print("SmartRestaurant Server")
 
 try:
-	thread1 = myThread(1, "SendQRCode", 1)
-	thread2 = myThread(1, "ReceiveQRCode", 1)
+	thread1 = myThread(1, "SendQR", 1)
+	thread2 = myThread(1, "ReceiveQR", 1)
 	thread3 = myThread(1, "ReceiveOrder", 1)
 	thread1.start()
 	thread2.start()

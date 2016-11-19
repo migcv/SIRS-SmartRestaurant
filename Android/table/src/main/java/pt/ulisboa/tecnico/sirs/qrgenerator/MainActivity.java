@@ -120,13 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 // Set protocol (we want TLSv1.2)
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
 
-                for(String s: protocols) {
+               /* for(String s: protocols) {
 
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
                         System.out.println("Using TLSv1.2");
                     }
-                }
+                }*/
 
                 // Socket socket = new Socket(serverAddr, 10000);
                 System.out.println("Connected!!!");
