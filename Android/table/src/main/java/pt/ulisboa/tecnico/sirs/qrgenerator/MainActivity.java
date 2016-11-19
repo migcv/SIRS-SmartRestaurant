@@ -18,7 +18,10 @@ import com.google.zxing.qrcode.encoder.QRCode;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.Socket;
+// import java.net.Socket;
+import java.security.Security;
+
+import javax.net.ssl.*;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -110,7 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
                 //InetAddress serverAddr = InetAddress.getByName("192.168.1.66");
 
-                Socket socket = new Socket(serverAddr, 10000);
+                // Create an instance of SSLSocket
+                SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10000);
+
+                // Socket socket = new Socket(serverAddr, 10000);
                 System.out.println("Connected!!!");
                 connected = true;
 
@@ -118,17 +125,18 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println("Receiving message!!!!");
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
-                    while ((s=in.readLine())!=null){
+                    while ((s = in.readLine()) != null) {
                         // this is the msg which will be encode in QRcode
                         QRcode = s;
                         System.out.println("MESSAGE=" + s);
                     }
-
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }
+
                 socket.close();
                 System.out.println("Socket closed!!!!");
+
             } catch (Exception e) {
                 Log.e("ClientActivity", "C: Error", e);
                 connected = false;
