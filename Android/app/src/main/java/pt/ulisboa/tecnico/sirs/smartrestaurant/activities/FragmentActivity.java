@@ -22,10 +22,20 @@ import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Map;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.*;
 
 public class FragmentActivity extends AppCompatActivity
@@ -116,6 +126,31 @@ public class FragmentActivity extends AppCompatActivity
         return true;
     }
 
+    private static SSLSocketFactory sslSocketFactory;
+    /**
+     * Returns a SSL Factory instance that accepts all server certificates.
+     * <pre>SSLSocket sock =
+     *     (SSLSocket) getSocketFactory.createSocket ( host, 443 ); </pre>
+     * @return  An SSL-specific socket factory.
+     **/
+    public SSLSocketFactory getSocketFactory()
+    {
+        if ( sslSocketFactory == null ) {
+            try {
+                TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this) };
+                SSLContext context = SSLContext.getInstance ("SSL");
+                context.init( new KeyManager[0], tm, new SecureRandom( ) );
+
+                sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
+
+            } catch (KeyManagementException e) {
+                //log.error ("No SSL algorithm support: " + e.getMessage(), e);
+            } catch (NoSuchAlgorithmException e) {
+                //log.error ("Exception when setting up the Naive key management.", e);
+            }
+        }
+        return sslSocketFactory;
+    }
 
     public class ClientThread implements Runnable {
 
@@ -125,13 +160,21 @@ public class FragmentActivity extends AppCompatActivity
                 InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
                 //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
 
-                Socket socket = new Socket(serverAddr, 10002);
+                SSLSocketFactory sslSocketFactory = (SSLSocketFactory) getSocketFactory();
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10002);
+
+                // Set protocol (we want TLSv1.2)
+                String[] protocols = socket.getEnabledProtocols(); // gets available protocols
+
+                //Socket socket = new Socket(serverAddr, 10002);
 
                 System.out.println("Connected!!!");
                 connected = true;
                 ArrayMap<String, Integer> order = Customer.getOrder().getOrders();
                 DataOutputStream oos = null;
-                String o = "";
+
+                //With the order the customer send the customerID
+                String o = Customer.getCustomerID() + " ";
 
                 try {
                     //Send Order

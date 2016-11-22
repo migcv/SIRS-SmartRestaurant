@@ -69,8 +69,14 @@ def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 	while 1:
 		(clientsocket, address) = serversocket.accept()
 		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+
+		connstream = ssl.wrap_socket(clientsocket,
+                             server_side=True,
+                             certfile="server.crt",
+                             keyfile="server.key",
+		             ssl_version=ssl.PROTOCOL_TLSv1)
 		
-		data = clientsocket.recv(24)
+		data = connstream.recv(24)
 		print "<{}>:Received <{}>".format(servicename, data)
 		exists = False
 		for i in infoTable:
@@ -78,13 +84,14 @@ def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 				print "<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i[0], data)
 				print "<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i[0])
 				clientsTable.update({clientID : i[0]})
-				clientsocket.send("{}:{}".format(clientID, i[0]))			
+				connstream.send("{}:{}".format(clientID, i[0]))			
 				clientID += 1
 				exists = True
 		if not exists :
 			print "<{}>:QRCode received DONT exists <{}> ".format(servicename, data)
-			clientsocket.send(str(-1))
+			connstream.send(str(-1))
 
+		connstream.close()
 		clientsocket.close()	
 # END of receiveQRCodeSocket()
 
@@ -101,22 +108,28 @@ def receiveOrderSocket(): # Server receives order from the Customer
 		(clientsocket, address) = serversocket.accept()
 		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
 	
-		#ssl.wrap_socket(sock, keyfile=None, certfile=None, server_side=True, cert_reqs=CERT_NONE, 
-		#ssl_version=ssl.PROTOCOL_, ca_certs=None, do_handshake_on_connect=True, suppress_ragged_eofs=True, ciphers=None)
+		connstream = ssl.wrap_socket(clientsocket,
+                             server_side=True,
+                             certfile="server.crt",
+                             keyfile="server.key",
+		             ssl_version=ssl.PROTOCOL_TLSv1)
 		
-		data = clientsocket.recv(2048)
+		
+		data = connstream.recv(2048)
 		customerID = -1
 		print "<{}>:Received order <{}> from customer <{}>".format(servicename, data, customerID)
 		datasplited = data.split(',')
 		aux = []
 		for i in datasplited:
 			aux += i.split(' ')
+		customerID = aux[0]
 		orders = {}
-		i = 0
+		i = 1
 		while i+1 < len(aux):
 			orders.update({aux[i] : aux[i+1]})
 			i += 2
-		clientsocket.close()	
+		clientsocket.close()
+		connstream.close()	
 # END of receiveOrderSocket()
 
 class myThread (threading.Thread):
