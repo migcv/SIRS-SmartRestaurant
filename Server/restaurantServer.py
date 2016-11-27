@@ -112,8 +112,7 @@ def receiveOrderSocket(): # Server receives order from the Customer
 		for i in datasplited:
 			aux += i.split(' ')
 		orders = {}
-        customerID = aux[0]
-		i = 1
+		i = 0
 		while i+1 < len(aux):
 			orders.update({aux[i] : aux[i+1]})
 			i += 2

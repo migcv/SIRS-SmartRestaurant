@@ -131,6 +131,7 @@ public class FragmentActivity extends AppCompatActivity
                 connected = true;
                 ArrayMap<String, Integer> order = Customer.getOrder().getOrders();
                 DataOutputStream oos = null;
+                //With the order the customer send the customerID
                 String o = Customer.getCustomerID() + " ";
 
                 try {
