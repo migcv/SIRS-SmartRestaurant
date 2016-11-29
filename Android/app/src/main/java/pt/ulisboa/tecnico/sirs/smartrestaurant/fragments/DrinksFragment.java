@@ -2,6 +2,8 @@ package pt.ulisboa.tecnico.sirs.smartrestaurant.fragments;
 
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,5 +112,28 @@ public class DrinksFragment extends Fragment {
                 beerTextView.setText(""+quantity);
             }
         });
+        Button backButton = (Button) view.findViewById(R.id.backButton);
+        backButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment fragment = new MenuFragment();
+                replaceFragment(fragment, "MENU_FRAGMENT");
+            }
+        });
+    }
+
+    public void replaceFragment(Fragment fragment, String fragmentTag){
+        String backStateName = fragment.getClass().getName();
+
+        FragmentManager fm = getFragmentManager();
+        fm.popBackStack(MenuFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        boolean fragmentPopped = fm.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped){ //fragment not in back stack, create it.
+            FragmentTransaction ft = fm.beginTransaction();
+            //ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            ft.replace(R.id.content_frame, fragment, fragmentTag);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
     }
 }

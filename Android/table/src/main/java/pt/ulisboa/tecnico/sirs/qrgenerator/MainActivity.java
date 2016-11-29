@@ -1,6 +1,5 @@
 package pt.ulisboa.tecnico.sirs.qrgenerator;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,17 +10,12 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.encoder.QRCode;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
-// import java.net.Socket;
 import java.net.Socket;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.Security;
@@ -30,7 +24,6 @@ import java.security.UnrecoverableKeyException;
 import javax.net.ssl.*;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-
 
 public class MainActivity extends AppCompatActivity {
     ImageView qrCodeImageview;
@@ -49,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             cThread.join();
         } catch (Exception e) {}
+        setTitle("Table");
 
         getID();
        // create thread to avoid ANR Exception
@@ -146,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 System.out.println("Connecting!!!");
 
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
-                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66");
+                //InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
+                InetAddress serverAddr = InetAddress.getByName("192.168.1.66");
 
                 // Create an instance of SSLSocket
                 //SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();

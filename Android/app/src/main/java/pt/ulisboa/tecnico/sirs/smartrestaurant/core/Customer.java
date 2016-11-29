@@ -21,4 +21,6 @@ public class Customer {
 
     public static void setCustomerID(int customerID) { Customer.customerID = customerID; }
 
+    public static Menu getMenu() { return menu; }
+
 }

@@ -2,6 +2,8 @@ package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,12 +33,11 @@ import pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.*;
 public class FragmentActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private boolean connected = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_fragment);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,9 +46,8 @@ public class FragmentActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Creating Thread!!");
-                Thread cThread = new Thread(new FragmentActivity.ClientThread());
-                cThread.start();
+                Fragment fragment = new OrdersFragment();
+                replaceFragment(fragment, "ORDERS_FRAGMENT");
             }
         });
 
@@ -116,43 +116,19 @@ public class FragmentActivity extends AppCompatActivity
         return true;
     }
 
+    public void replaceFragment(Fragment fragment, String fragmentTag){
+        String backStateName = fragment.getClass().getName();
 
-    public class ClientThread implements Runnable {
+        FragmentManager fm = getFragmentManager();
+        fm.popBackStack(MenuFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        boolean fragmentPopped = fm.popBackStackImmediate (backStateName, 0);
 
-        public void run() {
-            try {
-                System.out.println("Connecting!!!");
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
-                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
-
-                Socket socket = new Socket(serverAddr, 10002);
-
-                System.out.println("Connected!!!");
-                connected = true;
-                ArrayMap<String, Integer> order = Customer.getOrder().getOrders();
-                DataOutputStream oos = null;
-                //With the order the customer send the customerID
-                String o = Customer.getCustomerID() + " ";
-
-                try {
-                    //Send Order
-                    for (Map.Entry<String,Integer> entry : order.entrySet()) {
-                        String food = entry.getKey();
-                        int quantity = entry.getValue();
-                        o += food + " " + quantity + " ";
-                    }
-                    oos = new DataOutputStream(socket.getOutputStream());
-                    oos.writeBytes(o);
-                    oos.flush();
-                } catch (Exception e) {
-                    Log.e("ClientActivity", "S: Error", e);
-                }
-                socket.close();
-                System.out.println("Socket closed!!!!");
-            } catch (Exception e) {
-                Log.e("ClientActivity", "C: Error", e);
-                connected = false;
-            }
+        if (!fragmentPopped){ //fragment not in back stack, create it.
+            FragmentTransaction ft = fm.beginTransaction();
+            //ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+            ft.replace(R.id.content_frame, fragment, fragmentTag);
+            ft.addToBackStack(backStateName);
+            ft.commit();
         }
     }
 }

@@ -1,6 +1,7 @@
 package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_qrscanner);
 
         mScannerView = new ZXingScannerView(this);   // Programmatically initialize the scanner view
@@ -103,8 +105,8 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         public void run() {
             try {
                 System.out.println("Connecting!!!");
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
-                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
+                //InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
+                InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
 
                 Socket socket = new Socket(serverAddr, 10001);
 

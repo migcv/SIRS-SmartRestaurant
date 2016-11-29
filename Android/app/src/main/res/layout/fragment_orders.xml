@@ -1,0 +1,544 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.OrdersFragment"
+    app:layout_collapseParallaxMultiplier="1.0"
+    app:layout_scrollFlags="scroll"
+    android:baselineAligned="false">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?android:attr/colorBackground">
+
+        <TextView
+            android:text="Orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Orders"
+            android:typeface="normal"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textColor="?attr/actionModeSplitBackground"
+            android:layout_marginLeft="20px" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bPct"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="#"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/b"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/rice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="B' Perfect - 7.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bPerfect"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bPerfectQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bPerfectPrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="B' Toque - 7€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bToque"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bToqueQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bToquePrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="B' Cool - 6.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bCool"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bCoolQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bCoolPrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="B' Spicy - 6.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bSpicy"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bSpicyQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bSpicyPrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Water - 1.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/water"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/waterQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/waterPrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Coke - 1.5€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/coke"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cokeQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cokePrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Wine - 1€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/wine"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/wineQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/winePrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="Beer(20cl) - 1€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/beer"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/beerQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/beerPrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="b'Brownie - 3€"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bBrownie"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bBrownieQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bBrowniePrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:text="b'Cheese - 3€ "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bCheese"
+            android:layout_marginLeft="20px"
+            android:textStyle="normal|bold"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="25sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text="0"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bCheeseQuantity"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bCheesePrice"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:text="Send Order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:id="@+id/sendOrderButton"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light"
+            android:fontFamily="casual"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:text="Back to Menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:id="@+id/backButton"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light"
+            android:fontFamily="casual"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center" />
+    </TableRow>
+
+</TableLayout>
+

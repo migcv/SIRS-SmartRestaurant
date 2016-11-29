@@ -46,7 +46,7 @@ public class MenuFragment extends Fragment {
         return view;
     }
 
-    private void replaceFragment(Fragment fragment, String fragmentTag){
+    public void replaceFragment(Fragment fragment, String fragmentTag){
         String backStateName = fragment.getClass().getName();
 
         FragmentManager fm = getFragmentManager();
