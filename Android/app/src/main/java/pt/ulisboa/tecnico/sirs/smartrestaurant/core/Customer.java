@@ -10,6 +10,7 @@ public class Customer {
     private static Order order = new Order();
     private static int tableID = -1;
     private static int customerID;
+    private static float valueToPay;
 
     public static Order getOrder() { return order; }
 
@@ -22,5 +23,9 @@ public class Customer {
     public static void setCustomerID(int customerID) { Customer.customerID = customerID; }
 
     public static Menu getMenu() { return menu; }
+
+    public static float getValueToPay() { return valueToPay; }
+
+    public static void setValueToPay(float valueToPay) { Customer.valueToPay = valueToPay; }
 
 }

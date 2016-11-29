@@ -136,10 +136,6 @@ def receiveOrderSocket(): # Server receives order from the Customer
 		clientsOrders.update({clientID : orders})		
 		print("<{}>:Received order <{}> from customer <{}>".format(servicename, clientsOrders, clientID))
 		clientsocket.close()				
-		
-		
-		
-		
 # END of receiveOrderSocket()
 
 def calculatePrices():
@@ -166,12 +162,13 @@ def calculatePrices():
 		for key in orders.keys():
 			f.update({key : food[key]*float(orders[key])})
 		for key in f:
-			valueToPay += f3[key]
+			valueToPay += f[key]
 		
-		dataToSend = str(f + " .  " + str(valueToPay))
+		dataToSend = str(f) + " . " + str(valueToPay)
+		
+		clientsPayment.update({clientID : valueToPay})
 		
 		clientsocket.send(dataToSend)
-		
 # END of calculatePrices()
 
 class myThread (threading.Thread):
@@ -200,6 +197,7 @@ class myThread (threading.Thread):
 infoTable = [] 		# info about each table [tableID, QRCode, n_seats]
 clientsTable = {} 	# info where the client is seated {clientID : tableID}
 clientsOrders = {}	# Orders that each customer ordered {clientID : {order : quantity}}
+clientsPayment = {}	# Total value that a customer have to pay {clientID : value} 
 
 food = {"bPerfect": 7.5, "bToque": 7.0, "bHappy": 7.5, "bCool": 6.5, "bSmart": 6.0, "bSpicy": 6.5,
         "water": 1.5, "coke": 1.5, "lemonade": 1.5, "wine": 1.0, "beer": 1.0,"bBrownie": 3.0, "bCheese": 3.0}
@@ -217,9 +215,11 @@ try:
 	thread1 = myThread(1, "SendQR", 1)
 	thread2 = myThread(1, "ReceiveQR", 1)
 	thread3 = myThread(1, "ReceiveOrder", 1)
+	thread4 = myThread(1, "ReceiveIDToPay", 1)
 	thread1.start()
 	thread2.start()
 	thread3.start()
+	thread4.start()
         raw_input()
         print("Closing!")
 	os._exit(1)

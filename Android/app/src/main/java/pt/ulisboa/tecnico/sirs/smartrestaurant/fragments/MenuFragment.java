@@ -25,6 +25,7 @@ public class MenuFragment extends Fragment {
         Button foodButton = (Button) view.findViewById(R.id.foodButton);
         Button drinksButton = (Button) view.findViewById(R.id.drinksButton);
         Button desertsButton = (Button) view.findViewById(R.id.desertsButton);
+        Button payButton = (Button) view.findViewById(R.id.payButton);
         foodButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 Fragment fragment = new BurgersFragment();
@@ -41,6 +42,12 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new DesertsFragment();
                 replaceFragment(fragment, "DESERTS_FRAGMENT");
+            }
+        });
+        payButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment fragment = new ToPayFragment();
+                replaceFragment(fragment, "TO_PAY_FRAGMENT");
             }
         });
         return view;
