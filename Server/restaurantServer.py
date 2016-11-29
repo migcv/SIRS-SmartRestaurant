@@ -3,7 +3,6 @@ import sys
 import random
 import string
 import ssl
-import thread
 import time
 import threading
 import os
@@ -32,13 +31,13 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 	
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
-	print"<{}>:Port: {}".format(servicename, port)
+	print("<{}>:Port: {}".format(servicename, port))
 	
 	serversocket.listen(5)
-	print "<{}>:Listenning".format(servicename)
+	print("<{}>:Listenning".format(servicename))
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 		
 		connstream = ssl.wrap_socket(clientsocket,
                              server_side=True,
@@ -47,8 +46,8 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 		             ssl_version=ssl.PROTOCOL_TLSv1)		
 
 		tableID, qr, nseats = createTable()
-		print "<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats)
-		print "<{}>:Sending QRCode <{}>".format(servicename, qr)
+		print("<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats))
+		print("<{}>:Sending QRCode <{}>".format(servicename, qr))
 		connstream.send(qr)
 	
 		connstream.close()
@@ -58,31 +57,30 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 def receiveQRCodeSocket(): # Server receives QRCode string from the Customer
 	port = 10001
 	servicename = "ReceiveQR"
-	global clientID
 	
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
-	print "<{}>:Port {}".format(servicename, port)
+	print("<{}>:Port {}".format(servicename, port))
 	
 	serversocket.listen(5)
-	print "<{}>:Listenning".format(servicename)
+	print("<{}>:Listenning".format(servicename))
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 		
 		data = clientsocket.recv(24)
-		print "<{}>:Received <{}>".format(servicename, data)
+		print("<{}>:Received <{}>".format(servicename, data))
 		exists = False
 		for i in infoTable:
 			if i[1] == data :
-				print "<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i[0], data)
-				print "<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i[0])
+				clientID = random.randint(1,1000)
+				print("<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i[0], data))
+				print("<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i[0]))
 				clientsTable.update({clientID : i[0]})
 				clientsocket.send("{}:{}".format(clientID, i[0]))			
-				clientID = random.randint(1,1000)
 				exists = True
 		if not exists :
-			print "<{}>:QRCode received DONT exists <{}> ".format(servicename, data)
+			print("<{}>:QRCode received DONT exists <{}> ".format(servicename, data))
 			clientsocket.send(str(-1))
 
 		clientsocket.close()	
@@ -93,31 +91,88 @@ def receiveOrderSocket(): # Server receives order from the Customer
 	servicename = "ReceiveOrder"
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
-	print "<{}>: Port: {}".format(servicename, port)
+	print("<{}>: Port: {}".format(servicename, port))
 
 	serversocket.listen(5)
-	print "<{}>:Listenning".format(servicename)
+	print("<{}>:Listenning".format(servicename))
 	while 1:
 		(clientsocket, address) = serversocket.accept()
-		print "\n<{}>:Got a connection from <{}>".format(servicename, address)
+		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 	
 		#ssl.wrap_socket(sock, keyfile=None, certfile=None, server_side=True, cert_reqs=CERT_NONE, 
 		#ssl_version=ssl.PROTOCOL_, ca_certs=None, do_handshake_on_connect=True, suppress_ragged_eofs=True, ciphers=None)
 		
 		data = clientsocket.recv(2048)
-		customerID = -1
-		print "<{}>:Received order <{}> from customer <{}>".format(servicename, data, customerID)
-		datasplited = data.split(',')
+		id = data.split(':')
+		clientID = int(id[0])
+		datasplited = id[1].split(',')
 		aux = []
 		for i in datasplited:
 			aux += i.split(' ')
 		orders = {}
+		updateOrder = {}
+		finalValueOfOrders = 0
 		i = 0
-		while i+1 < len(aux):
-			orders.update({aux[i] : aux[i+1]})
-			i += 2
-		clientsocket.close()	
+		if (clientID in clientsTable):
+			while i+1 < len(aux):
+				if (clientsOrders.get(clientID, 'empty') == 'empty'):
+					orders.update({aux[i] : aux[i+1]})
+					
+				else:
+					updateOrder = clientsOrders.get(clientID)
+					if(updateOrder.get(aux[i], 'empty') != 'empty'):
+						finalValueOfOrders = int(updateOrder.get(aux[i])) + int(aux[i+1])
+						updateOrder[aux[i]] = finalValueOfOrders
+					else:
+						updateOrder.update({aux[i] : aux[i+1]})
+						
+					
+					print(updateOrder)
+				
+				i += 2
+		if(not orders):
+			orders = updateOrder
+		
+		clientsOrders.update({clientID : orders})		
+		print("<{}>:Received order <{}> from customer <{}>".format(servicename, clientsOrders, clientID))
+		clientsocket.close()				
+		
+		
+		
+		
 # END of receiveOrderSocket()
+
+def calculatePrices():
+	port = 10003
+	servicename = "ReceiveIDToPay"
+	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	serversocket.bind((hostname, port))
+	print("<{}>: Port: {}".format(servicename, port))
+	
+	serversocket.listen(5)
+	print("<{}>:Listenning".format(servicename))
+	while 1:
+		(clientsocket, address) = serversocket.accept()
+		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
+		
+		data = clientsocket.recv(2048)
+		clientID = int(data)
+		orders = {}
+		f = {}
+		valueToPay = 0
+		
+		if((clientID in clientsOrders) and (clientsOrders.get(clientID,'empty') != 'empty')):
+			orders = clientsOrders.get(clientID)
+		for key in orders.keys():
+			f.update({key : food[key]*float(orders[key])})
+		for key in f:
+			valueToPay += f3[key]
+		
+		dataToSend = str(f + " .  " + str(valueToPay))
+		
+		clientsocket.send(dataToSend)
+		
+# END of calculatePrices()
 
 class myThread (threading.Thread):
 	def __init__(self, threadID, name, counter):
@@ -128,27 +183,26 @@ class myThread (threading.Thread):
 	def stop(self):
 		self._stop.set()	
 	def run(self):
-		print "Starting " + self.name
+		print("Starting " + self.name)
 		if(self.name=="SendQR"):
 			sendQRCodeSocket()
 		if(self.name=="ReceiveQR"):
 			receiveQRCodeSocket()
 		if(self.name=="ReceiveOrder"):
-			receiveOrderSocket()		
-		print "Exiting " + self.name
+			receiveOrderSocket()
+		if(self.name=="ReceiveIDToPay"):
+			calculatePrices()
+		print("Exiting " + self.name)
 # END of myThread
 
 # MAIN PROGRAM -----------------------------------------------------------------------
-
-clientID = 1
 
 infoTable = [] 		# info about each table [tableID, QRCode, n_seats]
 clientsTable = {} 	# info where the client is seated {clientID : tableID}
 clientsOrders = {}	# Orders that each customer ordered {clientID : {order : quantity}}
 
-burgers = {"b'Perfect": 7.5, "b'Toque": 7.0, "b'Happy": 7.5, "b'Cool": 6.5, "b'Smart": 6.0, "b'Spicy": 6.5}
-drinks = {"Water": 1.5, "Coke": 1.5, "Lemonade": 1.5, "Wine": 1.0, "Beer": 1.0 }
-deserts = {"b'Brownie": 3.0, "b'Cheese": 3.0}
+food = {"bPerfect": 7.5, "bToque": 7.0, "bHappy": 7.5, "bCool": 6.5, "bSmart": 6.0, "bSpicy": 6.5,
+        "water": 1.5, "coke": 1.5, "lemonade": 1.5, "wine": 1.0, "beer": 1.0,"bBrownie": 3.0, "bCheese": 3.0}
 
 hostname = ''
 
@@ -166,11 +220,11 @@ try:
 	thread1.start()
 	thread2.start()
 	thread3.start()
-	raw_input()
-	print "Closing!"
+        raw_input()
+        print("Closing!")
 	os._exit(1)
 except:
-	print "Error!"
+	print("Error!")
 	
 
 # END PROGRAM -----------------------------------------------------------------------

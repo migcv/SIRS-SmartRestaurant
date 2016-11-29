@@ -140,8 +140,8 @@ public class MainActivity extends AppCompatActivity {
             try {
                 System.out.println("Connecting!!!");
 
-                //InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
-                InetAddress serverAddr = InetAddress.getByName("192.168.1.66");
+                InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
+                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66");
 
                 // Create an instance of SSLSocket
                 //SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
