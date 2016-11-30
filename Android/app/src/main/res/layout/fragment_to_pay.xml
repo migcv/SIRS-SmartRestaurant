@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.OrdersFragment"
+    tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.ToPayFragment"
     app:layout_collapseParallaxMultiplier="1.0"
     app:layout_scrollFlags="scroll"
     android:baselineAligned="false">
@@ -24,8 +24,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="40sp"
             android:fontFamily="casual"
+            android:textStyle="normal|bold"
             android:textColor="?attr/actionModeSplitBackground"
-            android:layout_marginLeft="20px" />
+            android:layout_weight="1"
+            android:layout_marginLeft="20px"
+            android:textAlignment="center" />
 
     </TableRow>
 
@@ -504,21 +507,45 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-        <Button
-            android:text="Send Order"
-            android:layout_width="wrap_content"
+        <TextView
+            android:text="TOTAL"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10sp"
-            android:id="@+id/sendOrderButton"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/background_light"
-            android:fontFamily="casual"
-            android:textSize="20sp"
+            android:id="@+id/total"
+            android:layout_marginLeft="30px"
             android:textStyle="normal|bold"
-            android:textAlignment="center" />
+            android:textSize="30sp"
+            android:fontFamily="casual"
+            android:layout_weight="1"
+            android:height="40sp"/>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+
+            <TextView
+                android:text=""
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalQ"
+                android:textSize="20sp"
+                android:layout_marginLeft="20px"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:text="0€"
+                android:layout_width="10sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/totalPrice"
+                android:textSize="30sp"
+                android:layout_marginLeft="-50px"
+                android:layout_weight="1"/>
+
+        </TableRow>
+
     </TableRow>
 
     <TableRow
@@ -526,10 +553,26 @@
         android:layout_height="match_parent" >
 
         <Button
-            android:text="Back to Menu"
+            android:text="Continue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
+            android:layout_marginRight="5sp"
+            android:id="@+id/payButton"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/background_light"
+            android:fontFamily="casual"
+            android:textSize="20sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center" />
+
+        <Button
+            android:text="Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="5sp"
             android:id="@+id/backButton"
             android:layout_weight="1"
             android:background="@color/colorPrimary"

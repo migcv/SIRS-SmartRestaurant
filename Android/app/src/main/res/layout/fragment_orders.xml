@@ -24,8 +24,11 @@
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textSize="40sp"
             android:fontFamily="casual"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"
             android:textColor="?attr/actionModeSplitBackground"
-            android:layout_marginLeft="20px" />
+            android:layout_marginLeft="20px"
+            android:textAlignment="center" />
 
     </TableRow>
 
@@ -526,7 +529,7 @@
         android:layout_height="match_parent" >
 
         <Button
-            android:text="Back to Menu"
+            android:text="Back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"

@@ -5,12 +5,15 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -18,7 +21,10 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
@@ -48,7 +54,110 @@ public class ToPayFragment extends Fragment {
     }
 
     private void initializeElements() {
+        Button payButton = (Button) view.findViewById(R.id.payButton);
+        Button backButton = (Button) view.findViewById(R.id.backButton);
+        payButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment fragment = new PaymentInfoFragment();
+                replaceFragment(fragment, "PAYMENT_INFO_FRAGMENT");
+                Customer.getOrder().orderDone();
+            }
+        });
+        backButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                Fragment fragment = new MenuFragment();
+                replaceFragment(fragment, "MENU_FRAGMENT");
+            }
+        });
+        TextView bPerfectQ = (TextView) view.findViewById(R.id.bPerfectQuantity);
+        TextView bPerfectP = (TextView) view.findViewById(R.id.bPerfectPrice);
+        TextView bToqueQ = (TextView) view.findViewById(R.id.bToqueQuantity);
+        TextView bToqueP = (TextView) view.findViewById(R.id.bToquePrice);
+        TextView bCoolQ = (TextView) view.findViewById(R.id.bCoolQuantity);
+        TextView bCoolP = (TextView) view.findViewById(R.id.bCoolPrice);
+        TextView bSpicyQ = (TextView) view.findViewById(R.id.bSpicyQuantity);
+        TextView bSpicyP = (TextView) view.findViewById(R.id.bSpicyPrice);
+        TextView waterQ = (TextView) view.findViewById(R.id.waterQuantity);
+        TextView waterP = (TextView) view.findViewById(R.id.waterPrice);
+        TextView cokeQ = (TextView) view.findViewById(R.id.cokeQuantity);
+        TextView cokeP = (TextView) view.findViewById(R.id.cokePrice);
+        TextView wineQ = (TextView) view.findViewById(R.id.wineQuantity);
+        TextView wineP = (TextView) view.findViewById(R.id.winePrice);
+        TextView beerQ = (TextView) view.findViewById(R.id.beerQuantity);
+        TextView beerP = (TextView) view.findViewById(R.id.beerPrice);
+        TextView bBrownieQ = (TextView) view.findViewById(R.id.bBrownieQuantity);
+        TextView bBrownieP = (TextView) view.findViewById(R.id.bBrowniePrice);
+        TextView bCheeseQ = (TextView) view.findViewById(R.id.bCheeseQuantity);
+        TextView bCheeseP = (TextView) view.findViewById(R.id.bCheesePrice);
+        TextView totalPrice = (TextView) view.findViewById(R.id.totalPrice);
 
+        float price;
+        int quantity;
+
+        // Burgers
+        if(Customer.getFoodToPay().containsKey("bPerfect")) {
+            price = Customer.getFoodToPay().get("bPerfect");
+            quantity = (int) (price / Customer.getMenu().getBurgersList().get("bPerfect"));
+            bPerfectQ.setText("" + quantity);
+            bPerfectP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("bToque")) {
+            price = Customer.getFoodToPay().get("bToque");
+            quantity = (int) (price / Customer.getMenu().getBurgersList().get("bToque"));
+            bToqueQ.setText("" + quantity);
+            bToqueP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("bCool")) {
+            price = Customer.getFoodToPay().get("bCool");
+            quantity = (int) (price / Customer.getMenu().getBurgersList().get("bCool"));
+            bCoolQ.setText("" + quantity);
+            bCoolP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("bSpicy")) {
+            price = Customer.getFoodToPay().get("bSpicy");
+            quantity = (int) (price / Customer.getMenu().getBurgersList().get("bSpicy"));
+            bSpicyQ.setText("" + quantity);
+            bSpicyP.setText("" + price + "€");
+        }
+        // Drinks
+        if(Customer.getFoodToPay().containsKey("water")) {
+            price = Customer.getFoodToPay().get("water");
+            quantity = (int) (price / Customer.getMenu().getDrinksList().get("water"));
+            waterQ.setText("" + quantity);
+            waterP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("coke")) {
+            price = Customer.getFoodToPay().get("coke");
+            quantity = (int) (price / Customer.getMenu().getDrinksList().get("coke"));
+            cokeQ.setText("" + quantity);
+            cokeP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("wine")) {
+            price = Customer.getFoodToPay().get("wine");
+            quantity = (int) (price / Customer.getMenu().getDrinksList().get("wine"));
+            wineQ.setText("" + quantity);
+            wineP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("beer")) {
+            price = Customer.getFoodToPay().get("beer");
+            quantity = (int) (price / Customer.getMenu().getDrinksList().get("beer"));
+            beerQ.setText("" + quantity);
+            beerP.setText("" + price + "€");
+        }
+        // Desert
+        if(Customer.getFoodToPay().containsKey("bBrownie")) {
+            price = Customer.getFoodToPay().get("bBrownie");
+            quantity = (int) (price / Customer.getMenu().getDesertsList().get("bBrownie"));
+            bBrownieQ.setText("" + quantity);
+            bBrownieP.setText("" + price + "€");
+        }
+        if(Customer.getFoodToPay().containsKey("bCheese")) {
+            price = Customer.getFoodToPay().get("bCheese");
+            quantity = (int) (price / Customer.getMenu().getDesertsList().get("bCheese"));
+            bCheeseQ.setText("" + quantity);
+            bCheeseP.setText("" + price + "€");
+        }
+        totalPrice.setText("" + Customer.getValueToPay() + "€");
     }
 
     public class ClientThread implements Runnable {
@@ -65,7 +174,7 @@ public class ToPayFragment extends Fragment {
                 connected = true;
                 DataOutputStream oos = null;
                 String o = Customer.getCustomerID() + " ";
-
+                System.out.println("Client ID  " + o);
                 try {
                     //Send the customerID
                     oos = new DataOutputStream(socket.getOutputStream());
@@ -76,16 +185,16 @@ public class ToPayFragment extends Fragment {
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
                     while ((s=in.readLine())!=null) {
+                        System.out.println("Messagem recebida: " + s);
                         String[] splitted = s.split(" . ");
+                        Customer.setPaymentCode(splitted[2]);
                         Customer.setValueToPay(Float.parseFloat(splitted[1]));
-                        String[] aux5 = splitFoodToPay(splitted[0]);
-                        System.out.print(aux5);
+                        ArrayMap<String, Float> aux5 = splitFoodToPay(splitted[0]);
+                        Customer.setFoodToPay(aux5);
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }
-
-
                 socket.close();
                 System.out.println("Socket closed!!!!");
             } catch (Exception e) {
@@ -96,17 +205,19 @@ public class ToPayFragment extends Fragment {
     }
 
 
-    public String[] splitFoodToPay(String splitted){
+    public ArrayMap<String, Float> splitFoodToPay(String splitted){
         String[] aux1 = splitted.split("\\{");
         String[] aux2 = aux1[1].split("\\}");
         String[] aux3 = aux2[0].split(",");
-        String[] aux4 = null;
-        int i = 0;
-        while(i < aux3.length){
-            aux4 = aux3[i].split(" : ");
-        }
-        return aux4;
 
+        ArrayMap<String, Float> foodToPay = new ArrayMap<String, Float>();
+        for(int i = 0; i < aux3.length; i++){
+            System.out.println("i= " + i + " Aux3: " + aux3[i]);
+            String[] aux4 = aux3[i].split(": ");
+            System.out.println("BOAS MALTA! " + aux4[0].split("\'")[1] + " | " + aux4[1]);
+            foodToPay.put(aux4[0].split("\'")[1], Float.parseFloat(aux4[1]));
+        }
+        return foodToPay;
     }
 
     public void replaceFragment(Fragment fragment, String fragmentTag){

@@ -1,0 +1,59 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pt.ulisboa.tecnico.sirs.smartrestaurant.fragments.OrdersFragment"
+    app:layout_collapseParallaxMultiplier="1.0"
+    app:layout_scrollFlags="scroll"
+    android:baselineAligned="false">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?android:attr/colorBackground">
+
+        <TextView
+            android:text="Thank You,\nCome Again"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Orders"
+            android:typeface="normal"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="40sp"
+            android:fontFamily="casual"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"
+            android:textColor="?attr/actionModeSplitBackground"
+            android:layout_marginLeft="20px"
+            android:textAlignment="center" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="?android:attr/colorBackground">
+
+        <TextView
+            android:text="The invoice of this meal was sent to your email."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Orders"
+            android:typeface="normal"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="20sp"
+            android:fontFamily="casual"
+            android:textStyle="normal|bold"
+            android:layout_weight="1"
+            android:layout_marginLeft="20px"
+            android:textAlignment="center" />
+
+    </TableRow>
+
+
+
+</TableLayout>
+

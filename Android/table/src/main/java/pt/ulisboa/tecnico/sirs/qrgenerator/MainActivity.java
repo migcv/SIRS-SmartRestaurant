@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Table");
 
         getID();
-       // create thread to avoid ANR Exception
+        // create thread to avoid ANR Exception
         Thread t = new Thread(new Runnable() {
             public void run() {
 
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
 
                /* for(String s: protocols) {
-
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
                         System.out.println("Using TLSv1.2");
@@ -191,4 +190,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
