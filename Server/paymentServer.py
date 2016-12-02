@@ -50,7 +50,7 @@ def receiveRandomID():
         
         randomID = data
         if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-            clientsocket.send(randomIDValueToPay.get(randomID, 'empty'))
+            clientsocket.send(str.encode(randomIDValueToPay.get(randomID, 'empty')))
             print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
             
         else:
