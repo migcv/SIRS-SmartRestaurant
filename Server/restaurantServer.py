@@ -45,13 +45,17 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 		                             keyfile="server.key",
 		                             ssl_version=ssl.PROTOCOL_TLSv1_2)
 		
+		
+		
 		tableID, qr, nseats = createTable()
 		print("<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats))
 		print("<{}>:Sending QRCode <{}>".format(servicename, qr))
 		
-		
-		
 		connstream.send(str.encode(qr))
+		
+		print("Certificate Info")
+		print(connstream.cipher())
+		print("Certificate Info DONE")
 
 		connstream.close()
 		clientsocket.close()

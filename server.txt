@@ -1,3 +1,7 @@
 185.43.210.233
 root 
 Mann4s21
+
+
+ssh pi@smartrestaurant.ddns.net
+raspberry
