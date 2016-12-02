@@ -1,8 +1,13 @@
 package pt.ulisboa.tecnico.sirs.smartrestaurant.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,10 +21,20 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 
 public class QRScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
@@ -100,6 +115,32 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         // mScannerView.resumeCameraPreview(this);
     }
 
+    private static SSLSocketFactory sslSocketFactory;
+
+    /**
+     * Returns a SSL Factory instance that accepts all server certificates.
+     * <pre>SSLSocket sock =
+     *     (SSLSocket) getSocketFactory.createSocket ( host, 443 ); </pre>
+     * @return  An SSL-specific socket factory.
+     **/
+    public SSLSocketFactory getSocketFactory() {
+        if ( sslSocketFactory == null ) {
+            try {
+                TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this) };
+                SSLContext context = SSLContext.getInstance ("SSL");
+                context.init( new KeyManager[0], tm, new SecureRandom( ) );
+
+                sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
+
+            } catch (KeyManagementException e) {
+                //log.error ("No SSL algorithm support: " + e.getMessage(), e);
+            } catch (NoSuchAlgorithmException e) {
+                //log.error ("Exception when setting up the Naive key management.", e);
+            }
+        }
+        return sslSocketFactory;
+    }
+
     public class ClientThread implements Runnable {
 
         public void run() {
@@ -108,7 +149,20 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                 InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
                 //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
 
-                Socket socket = new Socket(serverAddr, 10001);
+                // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
+                SSLSocketFactory sslSocketFactory = getSocketFactory();
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10001);
+
+                // Set protocol (we want TLSv1.2)
+                String[] protocols = socket.getEnabledProtocols(); // gets available protocols
+                for(String s: protocols) {
+                    if(s.equalsIgnoreCase("TLSv1.2")) {
+                        socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
+                        System.out.println("Using TLSv1.2");
+                    }
+                }
+
+                //Socket socket = new Socket(serverAddr, 10001);
 
                 System.out.println("Connected!!!");
                 connected = true;

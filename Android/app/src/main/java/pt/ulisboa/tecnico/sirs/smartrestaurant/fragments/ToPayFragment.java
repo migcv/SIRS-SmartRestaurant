@@ -21,13 +21,23 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 
 public class ToPayFragment extends Fragment {
 
@@ -160,6 +170,32 @@ public class ToPayFragment extends Fragment {
         totalPrice.setText("" + Customer.getValueToPay() + "€");
     }
 
+    private static SSLSocketFactory sslSocketFactory;
+
+    /**
+     * Returns a SSL Factory instance that accepts all server certificates.
+     * <pre>SSLSocket sock =
+     *     (SSLSocket) getSocketFactory.createSocket ( host, 443 ); </pre>
+     * @return  An SSL-specific socket factory.
+     **/
+    public SSLSocketFactory getSocketFactory() {
+        if ( sslSocketFactory == null ) {
+            try {
+                TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this.getActivity()) };
+                SSLContext context = SSLContext.getInstance ("SSL");
+                context.init( new KeyManager[0], tm, new SecureRandom( ) );
+
+                sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
+
+            } catch (KeyManagementException e) {
+                //log.error ("No SSL algorithm support: " + e.getMessage(), e);
+            } catch (NoSuchAlgorithmException e) {
+                //log.error ("Exception when setting up the Naive key management.", e);
+            }
+        }
+        return sslSocketFactory;
+    }
+
     public class ClientThread implements Runnable {
 
         public void run() {
@@ -168,7 +204,20 @@ public class ToPayFragment extends Fragment {
                 InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
                 //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
 
-                Socket socket = new Socket(serverAddr, 10003);
+                // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
+                SSLSocketFactory sslSocketFactory = getSocketFactory();
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10003);
+
+                // Set protocol (we want TLSv1.2)
+                String[] protocols = socket.getEnabledProtocols(); // gets available protocols
+                for(String s: protocols) {
+                    if(s.equalsIgnoreCase("TLSv1.2")) {
+                        socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
+                        System.out.println("Using TLSv1.2");
+                    }
+                }
+
+                //Socket socket = new Socket(serverAddr, 10003);
 
                 System.out.println("Connected!!!");
                 connected = true;
@@ -212,9 +261,7 @@ public class ToPayFragment extends Fragment {
 
         ArrayMap<String, Float> foodToPay = new ArrayMap<String, Float>();
         for(int i = 0; i < aux3.length; i++){
-            System.out.println("i= " + i + " Aux3: " + aux3[i]);
             String[] aux4 = aux3[i].split(": ");
-            System.out.println("BOAS MALTA! " + aux4[0].split("\'")[1] + " | " + aux4[1]);
             foodToPay.put(aux4[0].split("\'")[1], Float.parseFloat(aux4[1]));
         }
         return foodToPay;

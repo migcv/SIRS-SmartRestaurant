@@ -12,9 +12,13 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -115,12 +119,11 @@ public class MainActivity extends AppCompatActivity {
      *     (SSLSocket) getSocketFactory.createSocket ( host, 443 ); </pre>
      * @return  An SSL-specific socket factory.
      **/
-    public SSLSocketFactory getSocketFactory()
-    {
+    public SSLSocketFactory getSocketFactory() {
         if ( sslSocketFactory == null ) {
             try {
                 TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this) };
-                SSLContext context = SSLContext.getInstance ("SSL");
+                SSLContext context = SSLContext.getInstance ("TLSv1.2");
                 context.init( new KeyManager[0], tm, new SecureRandom( ) );
 
                 sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
@@ -147,35 +150,41 @@ public class MainActivity extends AppCompatActivity {
                 //SSLSocketFactory sslSocketFactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
                 //SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10000);
 
-                // Create an instance of SSLSocket (TRUSTING ANYTHING)
-                SSLSocketFactory sslSocketFactory = (SSLSocketFactory) getSocketFactory();
+                // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
+                SSLSocketFactory sslSocketFactory = getSocketFactory();
                 SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10000);
 
                 // Set protocol (we want TLSv1.2)
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
-
-               /* for(String s: protocols) {
+                for(String s: protocols) {
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
-                        System.out.println("Using TLSv1.2");
+                        System.out.println("CIPHER: "+ socket.getEnabledCipherSuites()[0]);
+                        System.out.println("Using: "+socket.getEnabledProtocols()[0]);
                     }
-                }*/
+                }
 
-                // Socket socket = new Socket(serverAddr, 10000);
                 System.out.println("Connected!!!");
                 connected = true;
 
                 try {
                     System.out.println("Receiving message!!!!");
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String s;
-                    //System.out.println("O in ta NULL!!! " + in.readLine());
-
-                    while ((s = in.readLine()) != null) {
-                        // this is the msg which will be encode in QRcode
-                        System.out.println("MESSAGE=" + s);
-                        QRcode = s;
+                    byte[] messageByte = new byte[1000];
+                    int bytesRead = 0;
+                    boolean end = false;
+                    DataInputStream in = new DataInputStream(socket.getInputStream());
+                    while(!end) {
+                        bytesRead = in.read(messageByte);
+                        String messageString = new String(messageByte, 0, bytesRead);
+                        QRcode = messageString;
+                        System.out.println("MESSAGE: " + messageString);
+                        if (messageString.length() == bytesRead) {
+                            end = true;
+                        }
                     }
+
+
+
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }
