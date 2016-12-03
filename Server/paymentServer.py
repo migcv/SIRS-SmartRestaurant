@@ -6,9 +6,9 @@ import ssl
 import time
 import threading
 import os
+import hashlib
 
-from Crypto.Hash import SHA256
-from Crypto.PublicKey import RSA
+import crypt
 
 
 def connectionServerPayment():
@@ -92,25 +92,25 @@ def receiveRandomID(secureClientPayment):
     
     randomID = data
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-		valueToPay = randomIDValueToPay.get(randomID, 'empty')
-		# sign message
-		f = open('pay_dal/pay_dal_priv.pem', 'r')
-		priv = RSA.importKey(f.read())
-		print("Signing...")
-		hash = SHA256.new(valueToPay)
-		signature = priv.sign(hash, '')
-		# send message
-		msg = ''
-		msg += str.encode(valueToPay) + ' '
-		msg += str.encode(signature)
-		secureClientPayment.send(mgs);
+        valueToPay = randomIDValueToPay.get(randomID, 'empty')
+        
+        hash_object = hashlib.sha256(str.encode(valueToPay))
+        hex_dig = hash_object.hexdigest()
+        f = open('pay_dal/pay_dal_priv.pem', 'r') # sign message
+        priv = RSA.importKey(f.read())
+        print("Signing...")
+        hash = SHA256.new(valueToPay)
+        signature = priv.sign(hash, '')
+        msg = '' # send message
+        msg += str.encode(valueToPay) + ' '
+        msg += str.encode(signature)
+        secureClientPayment.send(mgs);
         print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
         
     else:
         print("\n<{}>: Random ID not found".format(servicename))
             				
 # END of receiveOrderSocket() 
-
 
 class myThread (threading.Thread):
     def __init__(self, threadID, name, counter):
