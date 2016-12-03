@@ -7,6 +7,9 @@ import time
 import threading
 import os
 
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
+
 
 def connectionServerPayment():
     port = 10002
@@ -89,8 +92,18 @@ def receiveRandomID(secureClientPayment):
     
     randomID = data
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-        valueToPay = randomIDValueToPay.get(randomID, 'empty')
-        secureClientPayment.send(str.encode(valueToPay))
+		valueToPay = randomIDValueToPay.get(randomID, 'empty')
+		# sign message
+		f = open('pay_dal/pay_dal_priv.pem', 'r')
+		priv = RSA.importKey(f.read())
+		print("Signing...")
+		hash = SHA256.new(valueToPay)
+		signature = priv.sign(hash, '')
+		# send message
+		msg = ''
+		msg += str.encode(valueToPay) + ' '
+		msg += str.encode(signature)
+		secureClientPayment.send(mgs);
         print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
         
     else:
