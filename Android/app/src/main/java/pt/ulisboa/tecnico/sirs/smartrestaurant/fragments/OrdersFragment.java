@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import java.io.DataOutputStream;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -28,13 +27,14 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
-import pt.ulisboa.tecnico.sirs.smartrestaurant.activities.FragmentActivity;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 
 public class OrdersFragment extends Fragment {
 
     View view;
+
+    boolean haveOrders;
 
     private boolean connected = false;
 
@@ -45,11 +45,13 @@ public class OrdersFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_orders, container, false);
+        this.getActivity().findViewById(R.id.fab).setVisibility(view.GONE);
         initializeElements();
         return view;
     }
 
     private void initializeElements() {
+        haveOrders = false;
         Button sendOrderButton = (Button) view.findViewById(R.id.sendOrderButton);
         Button backButton = (Button) view.findViewById(R.id.backButton);
         sendOrderButton.setOnClickListener(new Button.OnClickListener() {
@@ -96,46 +98,102 @@ public class OrdersFragment extends Fragment {
         // Burgers
         int quantity = Customer.getOrder().getOrderQuantity("bPerfect");
         double price = Customer.getMenu().getBurgersList().get("bPerfect");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bPerfectRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bPerfectQ.setText(""+quantity);
         bPerfectP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("bToque");
         price = Customer.getMenu().getBurgersList().get("bToque");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bToqueRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bToqueQ.setText(""+quantity);
         bToqueP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("bCool");
         price = Customer.getMenu().getBurgersList().get("bCool");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bCoolRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bCoolQ.setText(""+quantity);
         bCoolP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("bSpicy");
         price = Customer.getMenu().getBurgersList().get("bSpicy");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bSpicyRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bSpicyQ.setText(""+quantity);
         bSpicyP.setText(""+price*quantity+"€");
         // Drinks
         quantity = Customer.getOrder().getOrderQuantity("water");
         price = Customer.getMenu().getDrinksList().get("water");
+        if(quantity <= 0) {
+            view.findViewById(R.id.waterRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         waterQ.setText(""+quantity);
         waterP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("coke");
         price = Customer.getMenu().getDrinksList().get("coke");
+        if(quantity <= 0) {
+            view.findViewById(R.id.cokeRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         cokeQ.setText(""+quantity);
         cokeP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("wine");
         price = Customer.getMenu().getDrinksList().get("wine");
+        if(quantity <= 0) {
+            view.findViewById(R.id.wineRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         wineQ.setText(""+quantity);
         wineP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("beer");
         price = Customer.getMenu().getDrinksList().get("beer");
+        if(quantity <= 0) {
+            view.findViewById(R.id.beerRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         beerQ.setText(""+quantity);
         beerP.setText(""+price*quantity+"€");
         // Desert
         quantity = Customer.getOrder().getOrderQuantity("bBrownie");
         price = Customer.getMenu().getDesertsList().get("bBrownie");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bBrownieRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bBrownieQ.setText(""+quantity);
         bBrownieP.setText(""+price*quantity+"€");
         quantity = Customer.getOrder().getOrderQuantity("bCheese");
         price = Customer.getMenu().getDesertsList().get("bCheese");
+        if(quantity <= 0) {
+            view.findViewById(R.id.bCheeseRow).setVisibility(View.GONE);
+        } else {
+            haveOrders = true;
+        }
         bCheeseQ.setText(""+quantity);
         bCheeseP.setText(""+price*quantity+"€");
+        if(!haveOrders) {
+            view.findViewById(R.id.firstRow).setVisibility(View.GONE);
+            sendOrderButton.setVisibility(view.GONE);
+        } else {
+            view.findViewById(R.id.emptyOrderRow).setVisibility(View.GONE);
+        }
     }
 
     private static SSLSocketFactory sslSocketFactory;

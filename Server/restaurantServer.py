@@ -88,7 +88,8 @@ def createTable(): # Creates a new table with an ID, QRCode and n_seats
 	qrcodeString = generateRandomString() 
 	tableID = random.randint(1,100)
 	seats = random.randint(1,10)
-	qrSeats = [qrcodeString, seats] # [QRCodeString, n_seats]
+	readTime = 0
+	qrSeats = [qrcodeString, seats, readTime] # [QRCodeString, n_seats]
 	
 	infoTable.update({tableID : qrSeats})
 
@@ -129,14 +130,17 @@ def receiveQRCode(secureServerClient): # Server receives QRCode string from the 
 	exists = False
 	for i in infoTable:
 		if (infoTable.get(i)[0] == data):
-			clientID = random.randint(1,1000)
-			print("<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i, data))
-			print("<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i))
-			clientsTable.update({clientID : i})
-			secureServerClient.send(str.encode("{}:{}".format(clientID, i)))			
-			exists = True
+			if(infoTable.get(i)[2] < infoTable.get(i)[1]):
+				infoTable.get(i)[2] = infoTable.get(i)[2] + 1
+				
+				clientID = random.randint(1,1000)
+				print("<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i, data))
+				print("<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i))
+				clientsTable.update({clientID : i})
+				secureServerClient.send(str.encode("{}:{}".format(clientID, i)))			
+				exists = True
 	if not exists :
-		print("<{}>:QRCode received DONT exists <{}> ".format(servicename, data))
+		print("<{}>:Invalid QRCode <{}> ".format(servicename, data))
 		secureServerClient.send(str.encode(str(-1)))
 
 		
@@ -275,7 +279,7 @@ class myThread (threading.Thread):
 
 # MAIN PROGRAM -----------------------------------------------------------------------
 
-infoTable = {} 		# info about each table {tableID : [QRCode, n_seats]}
+infoTable = {} 		# info about each table {tableID : [QRCode, n_seats, readTimes]}
 clientsTable = {} 	# info where the client is seated {clientID : tableID}
 clientsOrders = {}	# Orders that each customer ordered {clientID : {order : quantity}}
 clientsPayment = {}	# Total value that a customer have to pay {clientID : value}

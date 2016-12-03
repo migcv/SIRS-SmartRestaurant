@@ -67,12 +67,6 @@ public class PaymentInfoFragment extends Fragment {
                 Customer.getOrder().orderDone();
             }
         });
-        backButton.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                Fragment fragment = new ToPayFragment();
-                replaceFragment(fragment, "TO_PAY_FRAGMENT");
-            }
-        });
     }
 
 

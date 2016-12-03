@@ -5,29 +5,21 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
@@ -43,7 +35,7 @@ public class ToPayFragment extends Fragment {
 
     View view;
 
-    private boolean connected = false;
+    private boolean receiveFoodToPay;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +44,9 @@ public class ToPayFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_to_pay, container, false);
+        this.getActivity().findViewById(R.id.fab).setVisibility(view.GONE);
         try {
+            receiveFoodToPay = true;
             Thread cThread = new Thread(new ToPayFragment.ClientThread());
             cThread.start();
             cThread.join();
@@ -68,9 +62,16 @@ public class ToPayFragment extends Fragment {
         Button backButton = (Button) view.findViewById(R.id.backButton);
         payButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                try {
+                    receiveFoodToPay = false;
+                    Thread cThread = new Thread(new ToPayFragment.ClientThread());
+                    cThread.start();
+                    cThread.join();
+                } catch (InterruptedException e) {
+                    System.out.println(e.getMessage());
+                }
                 Fragment fragment = new PaymentInfoFragment();
                 replaceFragment(fragment, "PAYMENT_INFO_FRAGMENT");
-                Customer.getOrder().orderDone();
             }
         });
         backButton.setOnClickListener(new Button.OnClickListener() {
@@ -110,24 +111,32 @@ public class ToPayFragment extends Fragment {
             quantity = (int) (price / Customer.getMenu().getBurgersList().get("bPerfect"));
             bPerfectQ.setText("" + quantity);
             bPerfectP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bPerfectRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("bToque")) {
             price = Customer.getFoodToPay().get("bToque");
             quantity = (int) (price / Customer.getMenu().getBurgersList().get("bToque"));
             bToqueQ.setText("" + quantity);
             bToqueP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bToqueRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("bCool")) {
             price = Customer.getFoodToPay().get("bCool");
             quantity = (int) (price / Customer.getMenu().getBurgersList().get("bCool"));
             bCoolQ.setText("" + quantity);
             bCoolP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bCoolRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("bSpicy")) {
             price = Customer.getFoodToPay().get("bSpicy");
             quantity = (int) (price / Customer.getMenu().getBurgersList().get("bSpicy"));
             bSpicyQ.setText("" + quantity);
             bSpicyP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bSpicyRow).setVisibility(View.GONE);
         }
         // Drinks
         if(Customer.getFoodToPay().containsKey("water")) {
@@ -135,24 +144,32 @@ public class ToPayFragment extends Fragment {
             quantity = (int) (price / Customer.getMenu().getDrinksList().get("water"));
             waterQ.setText("" + quantity);
             waterP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.waterRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("coke")) {
             price = Customer.getFoodToPay().get("coke");
             quantity = (int) (price / Customer.getMenu().getDrinksList().get("coke"));
             cokeQ.setText("" + quantity);
             cokeP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.cokeRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("wine")) {
             price = Customer.getFoodToPay().get("wine");
             quantity = (int) (price / Customer.getMenu().getDrinksList().get("wine"));
             wineQ.setText("" + quantity);
             wineP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.wineRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("beer")) {
             price = Customer.getFoodToPay().get("beer");
             quantity = (int) (price / Customer.getMenu().getDrinksList().get("beer"));
             beerQ.setText("" + quantity);
             beerP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.beerRow).setVisibility(View.GONE);
         }
         // Desert
         if(Customer.getFoodToPay().containsKey("bBrownie")) {
@@ -160,14 +177,25 @@ public class ToPayFragment extends Fragment {
             quantity = (int) (price / Customer.getMenu().getDesertsList().get("bBrownie"));
             bBrownieQ.setText("" + quantity);
             bBrownieP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bBrownieRow).setVisibility(View.GONE);
         }
         if(Customer.getFoodToPay().containsKey("bCheese")) {
             price = Customer.getFoodToPay().get("bCheese");
             quantity = (int) (price / Customer.getMenu().getDesertsList().get("bCheese"));
             bCheeseQ.setText("" + quantity);
             bCheeseP.setText("" + price + "€");
+        } else {
+            view.findViewById(R.id.bCheeseRow).setVisibility(View.GONE);
         }
-        totalPrice.setText("" + Customer.getValueToPay() + "€");
+        if(Customer.getValueToPay() <= 0) {
+            view.findViewById(R.id.firstRow).setVisibility(View.GONE);
+            view.findViewById(R.id.totalRow).setVisibility(View.GONE);
+            view.findViewById(R.id.payButton).setVisibility(View.GONE);
+        } else {
+            totalPrice.setText("" + Customer.getValueToPay() + "€");
+            view.findViewById(R.id.nonePayRow).setVisibility(View.GONE);
+        }
     }
 
     private static SSLSocketFactory sslSocketFactory;
@@ -218,34 +246,46 @@ public class ToPayFragment extends Fragment {
                     }
                 }
 
-                //Socket socket = new Socket(serverAddr, 10003);
-
                 System.out.println("Connected!!!");
-                connected = true;
                 DataOutputStream oos = null;
-                String o = Customer.getCustomerID() + " ";
+                String o = Customer.getCustomerID() + "";
                 System.out.println("Client ID  " + o);
                 try {
-                    //Send Service ReceiveIDToPay
-                    oos = new DataOutputStream(socket.getOutputStream());
-                    oos.writeBytes("ReceiveIDToPay");
-                    oos.flush();
-
-                    //Send the customerID
-                    oos = new DataOutputStream(socket.getOutputStream());
-                    oos.writeBytes(o);
-                    oos.flush();
-
-                    //Receive food Payment
-                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String s;
-                    while ((s=in.readLine())!=null) {
-                        System.out.println("Received Message: " + s);
-                        String[] splitted = s.split(" . ");
-                        Customer.setPaymentCode(splitted[2]);
-                        Customer.setValueToPay(Float.parseFloat(splitted[1]));
-                        ArrayMap<String, Float> aux5 = splitFoodToPay(splitted[0]);
-                        Customer.setFoodToPay(aux5);
+                    if(receiveFoodToPay) {
+                        //Send Service ReceiveIDToPay
+                        oos = new DataOutputStream(socket.getOutputStream());
+                        oos.writeBytes("ReceiveIDToPay");
+                        oos.flush();
+                        //Send the customerID
+                        oos = new DataOutputStream(socket.getOutputStream());
+                        oos.writeBytes(o);
+                        oos.flush();
+                        //Receive food Payment
+                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        String s;
+                        while ((s = in.readLine()) != null) {
+                            System.out.println("Received Message: " + s);
+                            String[] splitted = s.split(" . ");
+                            Customer.setValueToPay(Float.parseFloat(splitted[1]));
+                            ArrayMap<String, Float> aux5 = splitFoodToPay(splitted[0]);
+                            Customer.setFoodToPay(aux5);
+                        }
+                    } else {
+                        //Send Service ReceiveIDToPay
+                        oos = new DataOutputStream(socket.getOutputStream());
+                        oos.writeBytes("SendRandomID");
+                        oos.flush();
+                        //Send the customerID
+                        oos = new DataOutputStream(socket.getOutputStream());
+                        oos.writeBytes(o);
+                        oos.flush();
+                        //Receive Random to Pay
+                        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        String s;
+                        while ((s = in.readLine()) != null) {
+                            System.out.println("Received Message: " + s);
+                            Customer.setPaymentCode(s);
+                        }
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
@@ -254,7 +294,6 @@ public class ToPayFragment extends Fragment {
                 System.out.println("Socket closed!!!!");
             } catch (Exception e) {
                 Log.e("ClientActivity", "C: Error", e);
-                connected = false;
             }
         }
     }
@@ -275,14 +314,11 @@ public class ToPayFragment extends Fragment {
 
     public void replaceFragment(Fragment fragment, String fragmentTag){
         String backStateName = fragment.getClass().getName();
-
         FragmentManager fm = getFragmentManager();
         fm.popBackStack(MenuFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         boolean fragmentPopped = fm.popBackStackImmediate (backStateName, 0);
-
         if (!fragmentPopped){ //fragment not in back stack, create it.
             FragmentTransaction ft = fm.beginTransaction();
-            //ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             ft.replace(R.id.content_frame, fragment, fragmentTag);
             ft.addToBackStack(backStateName);
             ft.commit();
