@@ -182,7 +182,7 @@ public class ToPayFragment extends Fragment {
         if ( sslSocketFactory == null ) {
             try {
                 TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this.getActivity()) };
-                SSLContext context = SSLContext.getInstance ("SSL");
+                SSLContext context = SSLContext.getInstance ("TLSv1.2");
                 context.init( new KeyManager[0], tm, new SecureRandom( ) );
 
                 sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
@@ -206,14 +206,15 @@ public class ToPayFragment extends Fragment {
 
                 // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
                 SSLSocketFactory sslSocketFactory = getSocketFactory();
-                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10003);
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10001);
 
                 // Set protocol (we want TLSv1.2)
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
                 for(String s: protocols) {
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
-                        System.out.println("Using TLSv1.2");
+                        System.out.println("CIPHER: "+ socket.getEnabledCipherSuites()[0]);
+                        System.out.println("Using: "+socket.getEnabledProtocols()[0]);
                     }
                 }
 
@@ -225,6 +226,11 @@ public class ToPayFragment extends Fragment {
                 String o = Customer.getCustomerID() + " ";
                 System.out.println("Client ID  " + o);
                 try {
+                    //Send Service ReceiveIDToPay
+                    oos = new DataOutputStream(socket.getOutputStream());
+                    oos.writeBytes("ReceiveIDToPay");
+                    oos.flush();
+
                     //Send the customerID
                     oos = new DataOutputStream(socket.getOutputStream());
                     oos.writeBytes(o);
@@ -234,7 +240,7 @@ public class ToPayFragment extends Fragment {
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
                     while ((s=in.readLine())!=null) {
-                        System.out.println("Messagem recebida: " + s);
+                        System.out.println("Received Message: " + s);
                         String[] splitted = s.split(" . ");
                         Customer.setPaymentCode(splitted[2]);
                         Customer.setValueToPay(Float.parseFloat(splitted[1]));

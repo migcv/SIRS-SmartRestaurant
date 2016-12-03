@@ -8,12 +8,13 @@ import threading
 import os
 
 
-def receiveRandomClientIDValueToPay():
-    port = 10004
-    servicename = "receiveRandomClientIDValueToPay"
+def connectionServerPayment():
+    port = 10002
+    servicename = "connectionServerPayment"
+
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversocket.bind((hostname, port))
-    print("<{}>: Port: {}".format(servicename, port))
+    print("<{}>:Port {}".format(servicename, port))
 
     serversocket.listen(5)
     print("<{}>:Listenning".format(servicename))
@@ -21,42 +22,79 @@ def receiveRandomClientIDValueToPay():
         (clientsocket, address) = serversocket.accept()
         print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 
-        data = clientsocket.recv(1024)
-        aux = data.split(" : ")
-        randomIDValueToPay.update({aux[0] : float(aux[1])})
-        
-        print("\n<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))
-        
+        secureServerPayment = ssl.wrap_socket(clientsocket,
+                                              server_side=True,
+                                              certfile="pay_dal/pay_dal.crt",
+                                              keyfile="pay_dal/pay_dal.key",
+                                              ssl_version=ssl.PROTOCOL_TLSv1_2)
+
+        service = secureServerPayment.recv(32).decode("utf-8")
+        print("Service Requested: <{}>".format(service))
+        if(service == "sendClientIDValueToPay"):
+            receiveRandomClientIDValueToPay(secureServerPayment)
+
+        secureServerPayment.close()
         clientsocket.close()
+
+# END of connectionServerPayment()
+
+def connectionClientPayment():
+    port = 10003
+    servicename = "connectionClientPayment"
+
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serversocket.bind((hostname, port))
+    print("<{}>:Port {}".format(servicename, port))
+
+    serversocket.listen(5)
+    print("<{}>:Listenning".format(servicename))
+    while 1:
+        (clientsocket, address) = serversocket.accept()
+        print("\n<{}>:Got a connection from <{}>".format(servicename, address))
+
+        secureServerPayment = ssl.wrap_socket(clientsocket,
+                                              server_side=True,
+                                              certfile="pay_dal/pay_dal.crt",
+                                              keyfile="pay_dal/pay_dal.key",
+                                              ssl_version=ssl.PROTOCOL_TLSv1_2)
+
+        service = secureServerPayment.recv(32).decode("utf-8")
+        print("Service Requested: <{}>".format(service))
+        if(service == "RandomID"):
+            receiveRandomID(secureServerPayment)
+
+        secureServerPayment.close()
+        clientsocket.close()
+
+# END of connectionServerPayment()
+
+def receiveRandomClientIDValueToPay(secureServerPayment):
+   
+    servicename = "receiveRandomClientIDValueToPay"
+    
+    data = secureServerPayment.recv(1024).decode("utf-8")
+    aux = data.split(" : ")
+    randomIDValueToPay.update({aux[0] : float(aux[1])})
+    
+    print("\n<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))   
         
 # END of receiveRandomClientIDValueToPay()
 
-def receiveRandomID():
-    port = 10005
-    servicename = "receiveRandomID"
-    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    serversocket.bind((hostname, port))
-    print("<{}>: Port: {}".format(servicename, port))
-
-    serversocket.listen(5)
-    print("<{}>:Listenning".format(servicename))
-    while 1:
-        (clientsocket, address) = serversocket.accept()
-        print("\n<{}>:Got a connection from <{}>".format(servicename, address))
-
-        data = clientsocket.recv(2048)
+def receiveRandomID(secureServerPayment):
+    servicename = "RandomID"
+    
+    data = clientsocket.recv(2048).decode("utf-8")
+    
+    print("\n<{}>:Received randomID <{}>".format(servicename, data))
+    
+    randomID = data
+    if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
+        clientsocket.send(str.encode(randomIDValueToPay.get(randomID, 'empty')))
+        print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
         
-        print("\n<{}>:Received randomID <{}>".format(servicename, data))
-        
-        randomID = data
-        if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-            clientsocket.send(str.encode(randomIDValueToPay.get(randomID, 'empty')))
-            print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
-            
-        else:
-            print("\n<{}>: Random ID not found".format(servicename))
-            
-        clientsocket.close()				
+    else:
+        print("\n<{}>: Random ID not found".format(servicename))
+            				
 # END of receiveOrderSocket() 
 
 
@@ -70,8 +108,10 @@ class myThread (threading.Thread):
         self._stop.set()	
     def run(self):
         print("Starting " + self.name)
-        if(self.name=="receiveRandomID"):
-            receiveRandomID()
+        if(self.name=="connectionServerPayment"):
+            connectionServerPayment()
+        if(self.name=="connectionClientPayment"):
+            connectionClientPayment()
         print("Exiting " + self.name)
 # END of myThread
 
@@ -87,11 +127,17 @@ BUFFER = 1024
 print("Payment Server")
 
 try:
-    thread1 = myThread(1, "receiveRandomID", 1)
-    thread2 = myThread(1, "receiveRandomClientIDValueToPay", 1)
+    thread1 = myThread(1, "connectionServerPayment", 1)
+    thread2 = myThread(1, "connectionClientPayment", 1)
     thread1.start()
     thread2.start()
     input()
     print("Closing!")
+    input("Press key for close")
+    print("Closing!")
     os._exit(1)
 except:
+    print("Error!")
+
+
+# END PROGRAM -----------------------------------------------------------------------

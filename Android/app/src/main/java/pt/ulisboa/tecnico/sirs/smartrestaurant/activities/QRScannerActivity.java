@@ -127,7 +127,7 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         if ( sslSocketFactory == null ) {
             try {
                 TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this) };
-                SSLContext context = SSLContext.getInstance ("SSL");
+                SSLContext context = SSLContext.getInstance ("TLSv1.2");
                 context.init( new KeyManager[0], tm, new SecureRandom( ) );
 
                 sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
@@ -158,7 +158,8 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                 for(String s: protocols) {
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
-                        System.out.println("Using TLSv1.2");
+                        System.out.println("CIPHER: "+ socket.getEnabledCipherSuites()[0]);
+                        System.out.println("Using: "+socket.getEnabledProtocols()[0]);
                     }
                 }
 
@@ -171,8 +172,15 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                 String str = getQrcode();
 
                 try {
-                    //Send QRCode string
+
                     System.out.println("Sending message!!!!");
+
+                    //Send Service ReceiveQR
+                    dOut = new DataOutputStream(socket.getOutputStream());
+                    dOut.writeBytes("ReceiveQR");
+                    dOut.flush();
+
+                    //Send QRCode string
                     dOut = new DataOutputStream(socket.getOutputStream());
                     dOut.writeBytes(str);
                     dOut.flush(); // Send off the data

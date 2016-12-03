@@ -150,7 +150,7 @@ public class OrdersFragment extends Fragment {
         if ( sslSocketFactory == null ) {
             try {
                 TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this.getActivity()) };
-                SSLContext context = SSLContext.getInstance ("SSL");
+                SSLContext context = SSLContext.getInstance ("TLSv1.2");
                 context.init( new KeyManager[0], tm, new SecureRandom( ) );
 
                 sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
@@ -174,14 +174,15 @@ public class OrdersFragment extends Fragment {
 
                 // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
                 SSLSocketFactory sslSocketFactory = getSocketFactory();
-                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10002);
+                SSLSocket socket = (SSLSocket) sslSocketFactory.createSocket(serverAddr, 10001);
 
                 // Set protocol (we want TLSv1.2)
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
                 for(String s: protocols) {
                     if(s.equalsIgnoreCase("TLSv1.2")) {
                         socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
-                        System.out.println("Using TLSv1.2");
+                        System.out.println("CIPHER: "+ socket.getEnabledCipherSuites()[0]);
+                        System.out.println("Using: "+socket.getEnabledProtocols()[0]);
                     }
                 }
 
@@ -195,6 +196,11 @@ public class OrdersFragment extends Fragment {
                 String o = Customer.getCustomerID() + ":";
 
                 try {
+                    //Send Service ReceiveOrder
+                    oos = new DataOutputStream(socket.getOutputStream());
+                    oos.writeBytes("ReceiveOrder");
+                    oos.flush();
+
                     //Send Order
                     for (Map.Entry<String,Integer> entry : order.entrySet()) {
                         String food = entry.getKey();

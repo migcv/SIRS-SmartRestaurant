@@ -38,13 +38,14 @@ public class NaiveTrustManager implements X509TrustManager {
     public void checkServerTrusted ( X509Certificate[] cert, String authType )
             throws CertificateException
     {
-        System.out.println("CERTIFICATE Received: <" + cert[0].getIssuerDN().getName() + " | " + cert[0].getSerialNumber() + ">");
+        System.out.println("CERTIFICATE Received: <" + cert[0].getIssuerDN().getName() + ">");
         X509Certificate[] acceptedCertificats = getAcceptedIssuers();
         for(int i = 0; i < acceptedCertificats.length; i++) {
-            if(acceptedCertificats[i].getSerialNumber().equals(cert[0].getSerialNumber())) {
+            if(acceptedCertificats[i].getPublicKey().equals(cert[0].getPublicKey())) {
                 System.out.println("CERTIFICATE received ACCEPTED");
                 return;
             }
+            System.out.println("CERTIFICATE read: <" + acceptedCertificats[i].getIssuerDN().getName());
         }
         System.out.println("CERTIFICATE received REJECTED");
         throw new CertificateException();

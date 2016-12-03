@@ -39,10 +39,10 @@ public class NaiveTrustManager implements X509TrustManager {
     public void checkServerTrusted ( X509Certificate[] cert, String authType )
             throws CertificateException
     {
-        System.out.println("CERTIFICATE Received: <" + cert[0].getIssuerDN().getName() + " | " + cert[0].getSerialNumber() + ">");
+        System.out.println("CERTIFICATE Received: <" + cert[0].getIssuerDN().getName() + ">");
         X509Certificate[] acceptedCertificats = getAcceptedIssuers();
         for(int i = 0; i < acceptedCertificats.length; i++) {
-            if(acceptedCertificats[i].getSerialNumber().equals(cert[0].getSerialNumber())) {
+            if(acceptedCertificats[i].getPublicKey().equals(cert[0].getPublicKey())) {
                 System.out.println("CERTIFICATE received ACCEPTED");
                 return;
             }
@@ -62,25 +62,29 @@ public class NaiveTrustManager implements X509TrustManager {
         //X509Certificate[] myTrustedAnchors = new X509Certificate[trustedAnchors.length + 1];
         //System.arraycopy(trustedAnchors, 0, myTrustedAnchors, 0, trustedAnchors.length);
 
-        X509Certificate[] myTrustedAnchors = new X509Certificate[1];
+        X509Certificate[] myTrustedAnchors = new X509Certificate[2];
 
         /* Load your certificate.
 
             Thanks to http://stackoverflow.com/questions/11857417/x509trustmanager-override-without-allowing-all-certs
             for this bit.
         */
-        X509Certificate cert = null;
+        X509Certificate certRestaurant = null;
+        X509Certificate certPayDal = null;
         try {
             InputStream inStream = context.getResources().openRawResource(R.raw.server);
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            cert = (X509Certificate) cf.generateCertificate(inStream);
+            certRestaurant = (X509Certificate) cf.generateCertificate(inStream);
+            inStream = context.getResources().openRawResource(R.raw.pay_dal);
+            certPayDal = (X509Certificate) cf.generateCertificate(inStream);
             inStream.close();
         } catch (Exception e) {
             System.out.println("ERROR reading local certificate");
         }
 
         /* Add your anchor cert as the last item in the array. */
-        myTrustedAnchors[0] = cert;
+        myTrustedAnchors[0] = certRestaurant;
+        myTrustedAnchors[1] = certPayDal;
 
         return myTrustedAnchors;
     }
