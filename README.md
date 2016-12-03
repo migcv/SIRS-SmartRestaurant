@@ -1,6 +1,6 @@
 # SIRS-SmartRestaurant
 
-* Ports used:
+__Ports used:__
 
 10000: restaurant - table
 10001: client - restaurant
