@@ -89,7 +89,8 @@ def receiveRandomID(secureClientPayment):
     
     randomID = data
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-        secureClientPayment.send(str.encode(randomIDValueToPay.get(randomID, 'empty')))
+        valueToPay = randomIDValueToPay.get(randomID, 'empty')
+        secureClientPayment.send(str.encode(valueToPay))
         print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
         
     else:
