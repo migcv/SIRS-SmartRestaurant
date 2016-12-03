@@ -32,16 +32,17 @@ def connectionServerTable():
 		                             certfile="restaurant/server.crt",
 		                             keyfile="restaurant/server.key",
 		                             ssl_version=ssl.PROTOCOL_TLSv1_2)
-
-		service = secureServerTable.recv(32).decode("utf-8")
+		
+		service = secureServerTable.recv(32).decode("utf-8")		
 		print("Service Requested: <{}>".format(service))
 		if(service == "SendQR"):
 			sendQRCodeSocket(secureServerTable)
 		elif(service == "UpdateQR"):
 			updateQR(secureServerTable)
 			
-		#secureServerTable.close()
-		#tablesocket.close()
+			
+		secureServerTable.close()
+		tablesocket.close()
 			
 # END of connectionServerClient()
 
@@ -111,8 +112,8 @@ def updateQR(secureServerTable):
 	tableID = int(aux)
 	print("<{}>:Received <{}>".format(servicename, tableID))
 	if(tableID in infoTable):
-		qrSeats = infoTable.get(tableID)
-		secureServerTable.send(str.encode("0"))
+		if(infoTable.get(tableID, 'empty') != 'empty'):
+			secureServerTable.send(str.encode("0"))
 	else:
 		sendQRCodeSocket(secureServerTable)
 
