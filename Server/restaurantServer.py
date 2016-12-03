@@ -13,22 +13,10 @@ def generateRandomString(): # Returns a new random string to generate a QRCode
 	return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(20))
 # END of generateRandomString()
 
-
-def createTable(): # Creates a new table with an ID, QRCode and n_seats
-	qrcodeString = generateRandomString() 
-	tableID = random.randint(1,100)
-	seats = random.randint(1,10)
-	idSeats = [tableID, qrcodeString, seats] # [tableID, QRCodeString, n_seats]
-	
-	infoTable.append(idSeats)
-
-	return tableID, qrcodeString, seats
-# END of createTable()
-
-def sendQRCodeSocket():	# Server send QRCode string to client
+def connectionServerTable():
 	port = 10000
-	servicename = "SendQR"
-
+	servicename = "connectionServerTable"
+	
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
 	print("<{}>:Port: {}".format(servicename, port))
@@ -39,49 +27,45 @@ def sendQRCodeSocket():	# Server send QRCode string to client
 		(tablesocket, address) = serversocket.accept()
 		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 
-		connstream = ssl.wrap_socket(tablesocket,
+		secureServerTable = ssl.wrap_socket(tablesocket,
 		                             server_side=True,
 		                             certfile="restaurant/server.crt",
 		                             keyfile="restaurant/server.key",
 		                             ssl_version=ssl.PROTOCOL_TLSv1_2)
 		
-		
-		
-		tableID, qr, nseats = createTable()
-		print("<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats))
-		print("<{}>:Sending QRCode <{}>".format(servicename, qr))
-		
-		connstream.send(str.encode(qr))
-		
-		print("Certificate Info")
-		print(connstream.cipher())
-		print("Certificate Info DONE")
-
-		connstream.close()
+		service = secureServerTable.recv(32).decode("utf-8")		
+		print("Service Requested: <{}>".format(service))
+		if(service == "SendQR"):
+			sendQRCodeSocket(secureServerTable)
+		elif(service == "UpdateQR"):
+			updateQR(secureServerTable)
+			
+			
+		secureServerTable.close()
 		tablesocket.close()
-# END of sendQRCodeSocket()
-
+			
+# END of connectionServerClient()
 
 def connectionServerClient():
 	port = 10001
 	servicename = "connectionServerClient"
-	
+
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	serversocket.bind((hostname, port))
 	print("<{}>:Port {}".format(servicename, port))
-		
+
 	serversocket.listen(5)
 	print("<{}>:Listenning".format(servicename))
 	while 1:
 		(clientsocket, address) = serversocket.accept()
 		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
-			
+
 		secureServerClient = ssl.wrap_socket(clientsocket,
-		                             server_side=True,
-		                             certfile="restaurant/server.crt",
-		                             keyfile="restaurant/server.key",
-		                             ssl_version=ssl.PROTOCOL_TLSv1_2)
-		
+		                                     server_side=True,
+		                                     certfile="restaurant/server.crt",
+		                                     keyfile="restaurant/server.key",
+		                                     ssl_version=ssl.PROTOCOL_TLSv1_2)
+
 		service = secureServerClient.recv(32).decode("utf-8")
 		print("Service Requested: <{}>".format(service))
 		if(service == "ReceiveQR"):
@@ -90,13 +74,51 @@ def connectionServerClient():
 			receiveOrder(secureServerClient)
 		elif(service == "ReceiveIDToPay"):
 			calculatePrices(secureServerClient)
-			
-			
+		elif(service == "SendRandomID"):
+			sendRandomID(secureServerClient)
+
 		secureServerClient.close()
 		clientsocket.close()
-			
+
 # END of connectionServerClient()
-		
+
+
+
+def createTable(): # Creates a new table with an ID, QRCode and n_seats
+	qrcodeString = generateRandomString() 
+	tableID = random.randint(1,100)
+	seats = random.randint(1,10)
+	qrSeats = [qrcodeString, seats] # [QRCodeString, n_seats]
+	
+	infoTable.update({tableID : qrSeats})
+
+	return tableID, qrcodeString, seats
+# END of createTable()
+
+def sendQRCodeSocket(secureServerTable):  # Server send QRCode string to client
+	servicename = "SendQR"
+
+	tableID, qr, nseats = createTable()
+	print("<{}>:New table <{}> <{}> <{}>".format(servicename, tableID, qr, nseats))
+	print("<{}>:Sending QRCode <{}>".format(servicename, qr))
+	
+	dataToSend = qr + " : " + str(tableID) 
+	secureServerTable.send(str.encode(dataToSend))
+# END of sendQRCodeSocket()
+
+def updateQR(secureServerTable):
+	servicename = "UpdateQR"
+	aux = secureServerTable.recv(24).decode("utf-8")
+	tableID = int(aux)
+	print("<{}>:Received <{}>".format(servicename, tableID))
+	if(tableID in infoTable):
+		if(infoTable.get(tableID, 'empty') != 'empty'):
+			secureServerTable.send(str.encode("0"))
+	else:
+		sendQRCodeSocket(secureServerTable)
+
+# END of updateQR
+	
 
 def receiveQRCode(secureServerClient): # Server receives QRCode string from the Customer
 	servicename = "ReceiveQR"	
@@ -106,12 +128,12 @@ def receiveQRCode(secureServerClient): # Server receives QRCode string from the 
 	print("<{}>:Received <{}>".format(servicename, data))
 	exists = False
 	for i in infoTable:
-		if i[1] == data :
+		if (infoTable.get(i)[0] == data):
 			clientID = random.randint(1,1000)
-			print("<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i[0], data))
-			print("<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i[0]))
-			clientsTable.update({clientID : i[0]})
-			secureServerClient.send(str.encode("{}:{}".format(clientID, i[0])))			
+			print("<{}>:QRCode received corresponds to table <{}> | <{}> ".format(servicename, i, data))
+			print("<{}>:Customer <{}> is seated in table <{}> ".format(servicename, clientID, i))
+			clientsTable.update({clientID : i})
+			secureServerClient.send(str.encode("{}:{}".format(clientID, i)))			
 			exists = True
 	if not exists :
 		print("<{}>:QRCode received DONT exists <{}> ".format(servicename, data))
@@ -149,6 +171,7 @@ def receiveOrder(secureServerClient): # Server receives order from the Customer
 				else:
 					updateOrder.update({aux[i] : aux[i+1]})
 					
+			
 			i += 2
 	if(not orders):
 		orders = updateOrder
@@ -177,18 +200,35 @@ def calculatePrices(secureServerClient):
 		valueToPay += f[key]
 	
 	randomClientID = generateRandomString()
-	dataToSend = str(f) + " . " + str(valueToPay) + " . " + randomClientID
-	print("Data to send:<{}>".format(dataToSend))
+	dataToSend = str(f) + " . " + str(valueToPay)
+	
 	
 	clientsPayment.update({clientID : valueToPay})
 	clientIDRandomIDValueToPay.update({clientID : [randomClientID, valueToPay]})
-	 
+	
+	print("Orders and prices:<{}>".format(dataToSend))
 	secureServerClient.send(str.encode(dataToSend))
-		
-	#sendRandomClientIDValueToPay(clientID)
+	
+			
 # END of calculatePrices()
 	
-
+def sendRandomID(secureServerClient):
+	servicename = "SendRandomID"
+	
+	aux = secureServerClient.recv(128)
+	data = aux.decode("utf-8")
+	print("Client id:<{}>".format(data))
+	clientID = int(data)
+	
+	if(clientIDRandomIDValueToPay.get(clientID, 'empty') != 'empty'):
+		randomClientID = clientIDRandomIDValueToPay.get(clientID, 'empty')[0]
+		print("RandomID Client:<{}>".format(randomClientID))
+		secureServerClient.send(str.encode(randomClientID))		
+		
+	
+	sendRandomClientIDValueToPay(clientID)
+	
+	
 def sendRandomClientIDValueToPay(clientID):
 	port = 10002
 	servicename = "sendClientIDValueToPay"
@@ -226,8 +266,8 @@ class myThread (threading.Thread):
 		self._stop.set()	
 	def run(self):
 		print("Starting " + self.name)
-		if(self.name=="SendQR"):
-			sendQRCodeSocket()
+		if(self.name=="connectionServerTable"):
+			connectionServerTable()
 		if(self.name=="connectionServerClient"):
 			connectionServerClient()
 		print("Exiting " + self.name)
@@ -235,7 +275,7 @@ class myThread (threading.Thread):
 
 # MAIN PROGRAM -----------------------------------------------------------------------
 
-infoTable = [] 		# info about each table [tableID, QRCode, n_seats]
+infoTable = {} 		# info about each table {tableID : [QRCode, n_seats]}
 clientsTable = {} 	# info where the client is seated {clientID : tableID}
 clientsOrders = {}	# Orders that each customer ordered {clientID : {order : quantity}}
 clientsPayment = {}	# Total value that a customer have to pay {clientID : value}
@@ -246,21 +286,16 @@ food = {"bPerfect": 7.5, "bToque": 7.0, "bHappy": 7.5, "bCool": 6.5, "bSmart": 6
 
 hostname = ''
 
-certificatefile = "restaurant.cer"	# Certifate file name
-keyfile = "key.pem"		# Public Key file name
-
 BUFFER = 1024
 
 print("SmartRestaurant Server")
 
 try:
-	thread1 = myThread(1, "SendQR", 1)
+	thread1 = myThread(1, "connectionServerTable", 1)
 	thread2 = myThread(1, "connectionServerClient", 1)
-	thread3 = myThread(1, "ReceiveIDToPay", 1)
 	thread1.start()
 	thread2.start()
-	thread3.start()
-	input("Press key for close")
+	input("Press key for close:")
 	print("Closing!")
 	os._exit(1)
 except:

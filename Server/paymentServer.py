@@ -7,6 +7,9 @@ import time
 import threading
 import os
 
+from Crypto.Hash import SHA256
+from Crypto.PublicKey import RSA
+
 
 def connectionServerPayment():
     port = 10002
@@ -52,18 +55,18 @@ def connectionClientPayment():
         (clientsocket, address) = serversocket.accept()
         print("\n<{}>:Got a connection from <{}>".format(servicename, address))
 
-        secureServerPayment = ssl.wrap_socket(clientsocket,
+        secureClientPayment = ssl.wrap_socket(clientsocket,
                                               server_side=True,
                                               certfile="pay_dal/pay_dal.crt",
                                               keyfile="pay_dal/pay_dal.key",
                                               ssl_version=ssl.PROTOCOL_TLSv1_2)
 
-        service = secureServerPayment.recv(32).decode("utf-8")
+        service = secureClientPayment.recv(32).decode("utf-8")
         print("Service Requested: <{}>".format(service))
         if(service == "RandomID"):
             receiveRandomID(secureServerPayment)
 
-        secureServerPayment.close()
+        secureClientPayment.close()
         clientsocket.close()
 
 # END of connectionServerPayment()
@@ -80,16 +83,27 @@ def receiveRandomClientIDValueToPay(secureServerPayment):
         
 # END of receiveRandomClientIDValueToPay()
 
-def receiveRandomID(secureServerPayment):
+def receiveRandomID(secureClientPayment):
     servicename = "RandomID"
     
-    data = clientsocket.recv(2048).decode("utf-8")
+    data = secureClientPayment.recv(2048).decode("utf-8")
     
     print("\n<{}>:Received randomID <{}>".format(servicename, data))
     
     randomID = data
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
-        clientsocket.send(str.encode(randomIDValueToPay.get(randomID, 'empty')))
+		valueToPay = randomIDValueToPay.get(randomID, 'empty')
+		# sign message
+		f = open('pay_dal/pay_dal_priv.pem', 'r')
+		priv = RSA.importKey(f.read())
+		print("Signing...")
+		hash = SHA256.new(valueToPay)
+		signature = priv.sign(hash, '')
+		# send message
+		msg = ''
+		msg += str.encode(valueToPay) + ' '
+		msg += str.encode(signature)
+		secureClientPayment.send(mgs);
         print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
         
     else:
@@ -131,8 +145,6 @@ try:
     thread2 = myThread(1, "connectionClientPayment", 1)
     thread1.start()
     thread2.start()
-    input()
-    print("Closing!")
     input("Press key for close")
     print("Closing!")
     os._exit(1)
