@@ -94,8 +94,8 @@ def receiveRandomID(secureClientPayment):
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
         valueToPay = randomIDValueToPay.get(randomID, 'empty')
         
-        hash_object = hashlib.sha256(str.encode(valueToPay))
-        hex_dig = hash_object.hexdigest()
+        #hash_object = hashlib.sha256(str.encode(valueToPay))
+        #hex_dig = hash_object.hexdigest()
         f = open('pay_dal/pay_dal_priv.pem', 'r') # sign message
         priv = RSA.importKey(f.read())
         print("Signing...")
