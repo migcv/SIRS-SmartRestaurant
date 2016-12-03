@@ -12,7 +12,7 @@ public class Customer {
     private static Order order = new Order();
     private static int tableID = -1;
     private static int customerID;
-    private static float valueToPay;
+    private static float valueToPay = 0;
     private static ArrayMap<String, Float> foodToPay = new ArrayMap<String, Float>();
     private static String paymentCode;
     private static String cardNumber;

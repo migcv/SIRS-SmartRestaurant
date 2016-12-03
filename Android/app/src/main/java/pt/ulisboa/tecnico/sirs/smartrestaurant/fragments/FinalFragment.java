@@ -4,6 +4,7 @@ package pt.ulisboa.tecnico.sirs.smartrestaurant.fragments;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
@@ -20,6 +21,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.activities.FragmentActivity;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.activities.MainActivity;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 
 public class FinalFragment extends Fragment {
@@ -30,6 +33,7 @@ public class FinalFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.getActivity().setTitle("Smart Restaurant");
     }
 
     @Override
@@ -40,9 +44,19 @@ public class FinalFragment extends Fragment {
     }
 
     private void initializeElements() {
-
+        Button endButton = (Button) view.findViewById(R.id.endButton);
+        endButton.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                goToMainActivity();
+            }
+        });
     }
 
+    public void goToMainActivity() {
+        Intent activity = new Intent(this.getActivity(), MainActivity.class);
+        startActivity(activity);
+        new Customer();
+    }
 
 
     public class ClientThread implements Runnable {

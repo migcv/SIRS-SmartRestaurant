@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "pt.ulisboa.tecnico.sirs.smartrestaurant"
-        minSdkVersion 24
+        minSdkVersion 20
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
