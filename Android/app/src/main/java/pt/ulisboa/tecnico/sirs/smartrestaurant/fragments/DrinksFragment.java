@@ -30,6 +30,7 @@ public class DrinksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_drinks, container, false);
+        this.getActivity().findViewById(R.id.fab).setVisibility(view.VISIBLE);
         initializeElements();
         return view;
     }

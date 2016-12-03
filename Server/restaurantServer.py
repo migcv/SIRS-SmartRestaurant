@@ -149,7 +149,6 @@ def receiveOrder(secureServerClient): # Server receives order from the Customer
 				else:
 					updateOrder.update({aux[i] : aux[i+1]})
 					
-			
 			i += 2
 	if(not orders):
 		orders = updateOrder
@@ -186,8 +185,7 @@ def calculatePrices(secureServerClient):
 	 
 	secureServerClient.send(str.encode(dataToSend))
 		
-	sendRandomClientIDValueToPay(clientID)
-		
+	#sendRandomClientIDValueToPay(clientID)
 # END of calculatePrices()
 	
 

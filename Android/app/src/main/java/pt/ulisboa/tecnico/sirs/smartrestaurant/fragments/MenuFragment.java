@@ -22,6 +22,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_menu, container, false);
+        this.getActivity().findViewById(R.id.fab).setVisibility(view.VISIBLE);
         Button foodButton = (Button) view.findViewById(R.id.foodButton);
         Button drinksButton = (Button) view.findViewById(R.id.drinksButton);
         Button desertsButton = (Button) view.findViewById(R.id.desertsButton);
