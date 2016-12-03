@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +14,17 @@ import android.widget.EditText;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.security.PublicKey;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
+import pt.testing.security.Signatures;
 
 public class PaymentInfoFragment extends Fragment {
 
@@ -98,7 +102,32 @@ public class PaymentInfoFragment extends Fragment {
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
                     while ((s=in.readLine())!=null) {
-                        System.out.println("Messagem recebida: " + s);
+                        System.out.println("Mensagem recebida: " + s);
+                    }
+
+                    // get hash and message
+                    String[] tokens = s.split(" ");
+                    String msg = tokens[0];
+                    String hash = tokens[1];
+
+                    // load Pay Dal certificate
+                    InputStream inStream = getActivity().getResources().openRawResource(R.raw.server);
+                    CertificateFactory cf = CertificateFactory.getInstance("X.509");
+                    inStream = getActivity().getResources().openRawResource(R.raw.pay_dal);
+                    X509Certificate certPayDal = (X509Certificate) cf.generateCertificate(inStream);
+                    inStream.close();
+
+                    // get Pay Dal public key
+                    PublicKey pubKeyPayDal = certPayDal.getPublicKey();
+
+                    // verify signature
+                    System.out.println("Verifying signature...");
+                    boolean isValid = Signatures.verifyDigitalSignature(hash.getBytes(), msg.getBytes(), pubKeyPayDal);
+                    if (isValid) {
+                        System.out.println("The digital signature is valid!");
+                    } else {
+                        // return false;
+                        throw new RuntimeException("********** The digital signature is NOT valid! **********");
                     }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
