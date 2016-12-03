@@ -131,8 +131,6 @@ try:
     thread2 = myThread(1, "connectionClientPayment", 1)
     thread1.start()
     thread2.start()
-    input()
-    print("Closing!")
     input("Press key for close")
     print("Closing!")
     os._exit(1)
