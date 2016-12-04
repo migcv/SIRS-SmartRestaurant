@@ -13,7 +13,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.util.Collection;
 
-import static javax.xml.bind.DatatypeConverter.printHexBinary;
+//import static javax.xml.bind.DatatypeConverter.printHexBinary;
 
 
 public class Signatures {
@@ -34,8 +34,8 @@ public class Signatures {
 		// DEBUG
 		System.out.println("Digest text:");
 		System.out.println(plainText);
-		System.out.println("Digest bytes:");
-		System.out.println(printHexBinary(plainBytes));
+		//System.out.println("Digest bytes:");
+		//System.out.println(printHexBinary(plainBytes));
 		
 		// get a message digest object using the specified algorithm
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
@@ -46,8 +46,8 @@ public class Signatures {
 		byte[] digest = messageDigest.digest();
 
 		//DEBUG
-		System.out.println("Digest:");
-		System.out.println(printHexBinary(digest));
+		//System.out.println("Digest:");
+		//System.out.println(printHexBinary(digest));
 		
 		return digest;
 	}
