@@ -11,6 +11,7 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.Collection;
 
 //import static javax.xml.bind.DatatypeConverter.printHexBinary;
@@ -167,12 +168,12 @@ public class Signatures {
 	 * auxiliary method to calculate new digest from text and compare it to the
 	 * to deciphered digest
 	 */
-	public static boolean verifyDigitalSignature(byte[] cipherDigest, byte[] bytes, PublicKey publicKey)
+	public static boolean verifyDigitalSignature(byte[] cipherDigest, byte[] bytes, PublicKey publicKey, X509Certificate cert)
 			throws Exception {
 
 		// verify the signature with the public key
-		Signature sig = Signature.getInstance("SHA1WithRSA");
-		sig.initVerify(publicKey);
+		Signature sig = Signature.getInstance("SHA256WithRSA");
+		sig.initVerify(cert);
 		sig.update(bytes);
 		try {
 			return sig.verify(cipherDigest);
