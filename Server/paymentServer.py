@@ -6,9 +6,10 @@ import ssl
 import time
 import threading
 import os
-import hashlib
 
-import crypt
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+
 
 
 def connectionServerPayment():
@@ -64,7 +65,7 @@ def connectionClientPayment():
         service = secureClientPayment.recv(32).decode("utf-8")
         print("Service Requested: <{}>".format(service))
         if(service == "RandomID"):
-            receiveRandomID(secureServerPayment)
+            receiveRandomID(secureClientPayment)
 
         secureClientPayment.close()
         clientsocket.close()
@@ -73,13 +74,12 @@ def connectionClientPayment():
 
 def receiveRandomClientIDValueToPay(secureServerPayment):
    
-    servicename = "receiveRandomClientIDValueToPay"
-    
+    servicename = "sendClientIDValueToPay"
     data = secureServerPayment.recv(1024).decode("utf-8")
     aux = data.split(" : ")
     randomIDValueToPay.update({aux[0] : float(aux[1])})
     
-    print("\n<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))   
+    print("<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))   
         
 # END of receiveRandomClientIDValueToPay()
 
@@ -94,18 +94,19 @@ def receiveRandomID(secureClientPayment):
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
         valueToPay = randomIDValueToPay.get(randomID, 'empty')
         
-        #hash_object = hashlib.sha256(str.encode(valueToPay))
-        #hex_dig = hash_object.hexdigest()
         f = open('pay_dal/pay_dal_priv.pem', 'r') # sign message
         priv = RSA.importKey(f.read())
-        print("Signing...")
-        hash = SHA256.new(valueToPay)
-        signature = priv.sign(hash, '')
-        msg = '' # send message
-        msg += str.encode(valueToPay) + ' '
-        msg += str.encode(signature)
-        secureClientPayment.send(mgs);
-        print("\n<{}>:Send value to pay <{}>".format(servicename, randomIDValueToPay.get(randomID, 'empty')))
+        
+        hashData = SHA256.new(str.encode(str(valueToPay))).digest()
+        print("\nHash: <{}>".format(hashData))
+        
+        
+        signature = priv.sign(hashData, '')
+        print("\nSigning: <{}>".format(signature[0]))
+        
+        msg = str(valueToPay) + ' ' + str(signature[0])
+        secureClientPayment.send(str.encode(msg));
+        print("\n<{}>:Send value to pay and the signature <{}>".format(servicename, msg))
         
     else:
         print("\n<{}>: Random ID not found".format(servicename))
