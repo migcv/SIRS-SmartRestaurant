@@ -21,23 +21,23 @@ public class Signatures {
 
 	/**
 	 * Digest
-	 * @throws NoSuchAlgorithmException 
+	 * @throws NoSuchAlgorithmException
 	 * @throws IllegalArgumentException
-	 * 
+	 *
 	 */
 	public static byte[] digest(String plainText) throws NoSuchAlgorithmException, IllegalArgumentException {
-		
+
 		if(plainText == null)
 			throw new IllegalArgumentException("Cannot digest a null string!");
-		
+
 		final byte[] plainBytes = plainText.getBytes();
-		
+
 		// DEBUG
 		System.out.println("Digest text:");
 		System.out.println(plainText);
 		//System.out.println("Digest bytes:");
 		//System.out.println(printHexBinary(plainBytes));
-		
+
 		// get a message digest object using the specified algorithm
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
 		System.out.println(messageDigest.getProvider().getInfo());
@@ -49,14 +49,14 @@ public class Signatures {
 		//DEBUG
 		//System.out.println("Digest:");
 		//System.out.println(printHexBinary(digest));
-		
+
 		return digest;
 	}
 
 
 	/**
 	 * Returns the public key from a certificate
-	 * 
+	 *
 	 * @param certificate
 	 * @return
 	 */
@@ -66,7 +66,7 @@ public class Signatures {
 
 	/**
 	 * Reads a certificate from a file
-	 * 
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -96,7 +96,7 @@ public class Signatures {
 
 	/**
 	 * Reads a collections of certificates from a file
-	 * 
+	 *
 	 * @return
 	 * @throws Exception
 	 */
@@ -119,7 +119,7 @@ public class Signatures {
 
 	/**
 	 * Reads a PrivateKey from a key-store
-	 * 
+	 *
 	 * @return The PrivateKey
 	 * @throws Exception
 	 */
@@ -134,7 +134,7 @@ public class Signatures {
 
 	/**
 	 * Reads a KeyStore from a file
-	 * 
+	 *
 	 * @return The read KeyStore
 	 * @throws Exception
 	 */

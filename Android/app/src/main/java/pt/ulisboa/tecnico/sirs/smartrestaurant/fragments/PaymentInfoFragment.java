@@ -22,6 +22,8 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.Signature;
+import java.security.SignatureException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
@@ -76,7 +78,8 @@ public class PaymentInfoFragment extends Fragment {
                     Thread cThread = new Thread(new PaymentInfoFragment.ClientThread());
                     cThread.start();
                     cThread.join();
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
 
                 Fragment fragment = new FinalFragment();
                 replaceFragment(fragment, "FINAL_FRAGMENT");
@@ -91,16 +94,17 @@ public class PaymentInfoFragment extends Fragment {
      * Returns a SSL Factory instance that accepts all server certificates.
      * <pre>SSLSocket sock =
      *     (SSLSocket) getSocketFactory.createSocket ( host, 443 ); </pre>
-     * @return  An SSL-specific socket factory.
+     *
+     * @return An SSL-specific socket factory.
      **/
     public SSLSocketFactory getSocketFactory() {
-        if ( sslSocketFactory == null ) {
+        if (sslSocketFactory == null) {
             try {
-                TrustManager[] tm = new TrustManager[] { new NaiveTrustManager(this.getActivity()) };
-                SSLContext context = SSLContext.getInstance ("TLSv1.2");
-                context.init( new KeyManager[0], tm, new SecureRandom( ) );
+                TrustManager[] tm = new TrustManager[]{new NaiveTrustManager(this.getActivity())};
+                SSLContext context = SSLContext.getInstance("TLSv1.2");
+                context.init(new KeyManager[0], tm, new SecureRandom());
 
-                sslSocketFactory = (SSLSocketFactory) context.getSocketFactory ();
+                sslSocketFactory = (SSLSocketFactory) context.getSocketFactory();
 
             } catch (KeyManagementException e) {
                 //log.error ("No SSL algorithm support: " + e.getMessage(), e);
@@ -125,18 +129,18 @@ public class PaymentInfoFragment extends Fragment {
 
                 // Set protocol (we want TLSv1.2)
                 String[] protocols = socket.getEnabledProtocols(); // gets available protocols
-                for(String s: protocols) {
-                    if(s.equalsIgnoreCase("TLSv1.2")) {
-                        socket.setEnabledProtocols(new String[] {s}); // set protocol to TLSv1.2
-                        System.out.println("CIPHER: "+ socket.getEnabledCipherSuites()[0]);
-                        System.out.println("Using: "+socket.getEnabledProtocols()[0]);
+                for (String s : protocols) {
+                    if (s.equalsIgnoreCase("TLSv1.2")) {
+                        socket.setEnabledProtocols(new String[]{s}); // set protocol to TLSv1.2
+                        System.out.println("CIPHER: " + socket.getEnabledCipherSuites()[0]);
+                        System.out.println("Using: " + socket.getEnabledProtocols()[0]);
                     }
                 }
 
                 System.out.println("Connected!!!");
                 connected = true;
                 DataOutputStream oos = null;
-                String o = Customer.getPaymentCode() + "";
+                String o = Customer.getPaymentCode();
                 System.out.println("Payment Code: " + o);
                 try {
                     //Request Service RandomID
@@ -153,7 +157,7 @@ public class PaymentInfoFragment extends Fragment {
                     //Receive Payment Response
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s, hash = null, msg = null;
-                    while ((s=in.readLine())!=null) {
+                    while ((s = in.readLine()) != null) {
                         String[] tokens = s.split(" ");
                         msg = tokens[0];
                         hash = tokens[1];
@@ -164,18 +168,27 @@ public class PaymentInfoFragment extends Fragment {
 
 
                     // load Pay Dal certificate
-                    InputStream inStream = getActivity().getResources().openRawResource(R.raw.server);
+                    //InputStream inStream = getActivity().getResources().openRawResource(R.raw.server);
                     CertificateFactory cf = CertificateFactory.getInstance("X.509");
-                    inStream = getActivity().getResources().openRawResource(R.raw.pay_dal);
+                    InputStream inStream = getActivity().getResources().openRawResource(R.raw.pay_dal);
                     X509Certificate certPayDal = (X509Certificate) cf.generateCertificate(inStream);
+                    PublicKey pubKeyPayDal = certPayDal.getPublicKey();
+                    boolean isValid;
+                    Signature sig = Signature.getInstance("SHA256WithRSA");
+                    sig.initVerify(pubKeyPayDal);
+                    sig.update(msg.getBytes());
+                    isValid = sig.verify(hash.getBytes());
+                    // get Pay Dal public key
+
                     inStream.close();
 
-                    // get Pay Dal public key
-                    PublicKey pubKeyPayDal = certPayDal.getPublicKey();
+
 
                     // verify signature
-                    System.out.println("Verifying signature... ");
-                    boolean isValid = Signatures.verifyDigitalSignature(hash.getBytes("UTF-8"), msg.getBytes("UTF-8"), pubKeyPayDal, certPayDal);
+                    /*System.out.println("Verifying signature... ");
+                    if (hash != null && msg != null) {
+                        isValid = verifyDigitalSignature(hash.getBytes("UTF-8"), msg.getBytes("UTF-8"), pubKeyPayDal, certPayDal);
+                    }*/
                     if (isValid) {
                         System.out.println("The digital signature is valid!");
                     } else {
@@ -194,19 +207,35 @@ public class PaymentInfoFragment extends Fragment {
         }
     }
 
-    public void replaceFragment(Fragment fragment, String fragmentTag){
+    public void replaceFragment(Fragment fragment, String fragmentTag) {
         String backStateName = fragment.getClass().getName();
 
         FragmentManager fm = getFragmentManager();
         fm.popBackStack(MenuFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        boolean fragmentPopped = fm.popBackStackImmediate (backStateName, 0);
+        boolean fragmentPopped = fm.popBackStackImmediate(backStateName, 0);
 
-        if (!fragmentPopped){ //fragment not in back stack, create it.
+        if (!fragmentPopped) { //fragment not in back stack, create it.
             FragmentTransaction ft = fm.beginTransaction();
             //ft.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
             ft.replace(R.id.content_frame, fragment, fragmentTag);
             ft.addToBackStack(backStateName);
             ft.commit();
+        }
+    }
+
+    public static boolean verifyDigitalSignature(byte[] cipherDigest, byte[] bytes, PublicKey publicKey, X509Certificate cert){
+        boolean verify = false;
+        try {
+            // verify the signature with the public key
+            Signature sig = Signature.getInstance("SHA256WithRSA");
+            sig.initVerify(cert);
+            sig.update(bytes);
+            verify = sig.verify(cipherDigest);
+            return verify;
+        } catch(Exception se) {
+            System.err.println("Caught exception while verifying signature " + se);
+            return verify;
+
         }
     }
 }
