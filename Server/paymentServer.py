@@ -6,11 +6,12 @@ import ssl
 import time
 import threading
 import os
+import hashlib
 
+from base64 import b64decode 
 from Crypto.PublicKey import RSA
 from Crypto.Hash import SHA256
-
-
+from Crypto.Signature import PKCS1_v1_5
 
 def connectionServerPayment():
     port = 10002
@@ -79,7 +80,20 @@ def receiveRandomClientIDValueToPay(secureServerPayment):
     aux = data.split(" : ")
     randomIDValueToPay.update({aux[0] : float(aux[1])})
     
-    print("<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))   
+    print("<{}>:Received randomID and ValueToPay <{}>".format(servicename, randomIDValueToPay))
+    
+    #Verify digital signature
+    
+    pub = RSA.importKey(open('restaurant/pub.pem').read())
+    aux2 = aux[0] + " : " + aux[1]
+    hashData= SHA256.new(str.encode(aux2)).digest()
+    signature = aux[2]
+    print(int(signature))
+    if(pub.verify(hashData, int(signature))):
+        print("Signature is OK!")
+    else:
+        print("Wrong Signature....")
+    
         
 # END of receiveRandomClientIDValueToPay()
 
@@ -94,19 +108,18 @@ def receiveRandomID(secureClientPayment):
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
         valueToPay = randomIDValueToPay.get(randomID, 'empty')
         
-        f = open('pay_dal/pay_dal_priv.pem', 'r') # sign message
-        priv = RSA.importKey(f.read())
+        hash = hashlib.sha256(str.encode(str(valueToPay))).hexdigest()
         
-        hashData = SHA256.new(str.encode(str(valueToPay))).digest()
-        print("\nHash: <{}>".format(hashData))
+        #If the signature worked with android java
+    
+        #priv = RSA.importKey(open('pay_dal/pay_dal_priv.pem').read())
         
         
-        signature = priv.sign(hashData, '')
-        print("\nSigning: <{}>".format(signature[0]))
+        #signer = PKCS1_v1_5.new(priv)
+        #signature = signer.sign(hahs)
         
-        msg = str(valueToPay) + ' ' + str(signature[0])
-        secureClientPayment.send(str.encode(msg));
-        print("\n<{}>:Send value to pay and the signature <{}>".format(servicename, msg))
+        secureClientPayment.send(str.encode(hash))
+        print("\n<{}>:Send value to pay digest <{}>".format(servicename, str.encode(hash)))
         
     else:
         print("\n<{}>: Random ID not found".format(servicename))

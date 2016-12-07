@@ -7,6 +7,12 @@ import time
 import threading
 import os
 
+import hashlib
+
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+from Crypto.Signature import PKCS1_v1_5
+
 # FUNCTIONS ---------------------------------------------------------------
 
 def generateRandomString(): # Returns a new random string to generate a QRCode
@@ -237,24 +243,33 @@ def sendRandomClientIDValueToPay(clientID):
 	port = 10002
 	servicename = "sendClientIDValueToPay"
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	
+
 	connstream = ssl.wrap_socket(serversocket,
 	                             certfile="pay_dal/pay_dal.crt",
 	                             keyfile="pay_dal/pay_dal.key",
 	                             ssl_version=ssl.PROTOCOL_TLSv1_2)	
-	
+
 	connstream.connect((hostname, port))
 	print("<{}>: Port: {}".format(servicename, port))
 	connstream.send(str.encode("sendClientIDValueToPay"))
 	
-	randomIDValueToPay = clientIDRandomIDValueToPay[clientID]
+	#Send randomIDValueToPay and digital signature
 	
-	dataToSend = randomIDValueToPay[0] + " : " + str(randomIDValueToPay[1])
-	 
+	priv = RSA.importKey(open('restaurant/priv.pem').read())
+	
+
+	randomIDValueToPay = clientIDRandomIDValueToPay[clientID]
+
+	aux = randomIDValueToPay[0] + " : " + str(randomIDValueToPay[1])
+
+	hashData= SHA256.new(str.encode(aux)).digest()
+	signature = priv.sign(hashData, '')
+	
+	dataToSend = aux + " : " + str(signature[0])
 	
 	connstream.send(str.encode(dataToSend))
 	print("Data Sent: <{}>".format(dataToSend))
-	
+
 	connstream.close()
 	serversocket.close()	
 
