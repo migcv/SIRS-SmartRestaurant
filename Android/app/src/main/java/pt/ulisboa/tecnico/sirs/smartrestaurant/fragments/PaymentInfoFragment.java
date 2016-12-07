@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,18 +13,20 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.spongycastle.util.encoders.Base64Encoder;
+
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
-import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Signature;
-import java.security.SignatureException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
@@ -35,8 +38,8 @@ import javax.net.ssl.TrustManager;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
-import pt.testing.security.Signatures;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
+
 
 public class PaymentInfoFragment extends Fragment {
 
@@ -116,7 +119,6 @@ public class PaymentInfoFragment extends Fragment {
     }
 
     public class ClientThread implements Runnable {
-
         public void run() {
             try {
                 System.out.println("Connecting!!!");
@@ -148,53 +150,18 @@ public class PaymentInfoFragment extends Fragment {
                     oos.writeBytes("RandomID");
                     oos.flush();
 
-
                     //Send the Payment Code
                     oos = new DataOutputStream(socket.getOutputStream());
                     oos.writeBytes(o);
                     oos.flush();
 
-                    //Receive Payment Response
+                    //Receive hash(valueToPay)
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                    String s, hash = null, msg = null;
-                    while ((s = in.readLine()) != null) {
-                        String[] tokens = s.split(" ");
-                        msg = tokens[0];
-                        hash = tokens[1];
-                        System.out.println("Mensagem recebida: <" + msg + "><" + hash + ">");
+                    String s;
+                    while ((s=in.readLine())!=null) {
+                        System.out.println("MESSAGE=" + s);
                     }
 
-                    // get hash and message
-
-
-                    // load Pay Dal certificate
-                    //InputStream inStream = getActivity().getResources().openRawResource(R.raw.server);
-                    CertificateFactory cf = CertificateFactory.getInstance("X.509");
-                    InputStream inStream = getActivity().getResources().openRawResource(R.raw.pay_dal);
-                    X509Certificate certPayDal = (X509Certificate) cf.generateCertificate(inStream);
-                    PublicKey pubKeyPayDal = certPayDal.getPublicKey();
-                    boolean isValid;
-                    Signature sig = Signature.getInstance("SHA256WithRSA");
-                    sig.initVerify(pubKeyPayDal);
-                    sig.update(msg.getBytes());
-                    isValid = sig.verify(hash.getBytes());
-                    // get Pay Dal public key
-
-                    inStream.close();
-
-
-
-                    // verify signature
-                    /*System.out.println("Verifying signature... ");
-                    if (hash != null && msg != null) {
-                        isValid = verifyDigitalSignature(hash.getBytes("UTF-8"), msg.getBytes("UTF-8"), pubKeyPayDal, certPayDal);
-                    }*/
-                    if (isValid) {
-                        System.out.println("The digital signature is valid!");
-                    } else {
-                        // return false;
-                        throw new RuntimeException("********** The digital signature is NOT valid! **********");
-                    }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }

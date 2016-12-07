@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 } // end of catch block
                                 QRCode_done = true;
-                                System.out.println("MAMAS");
                             } // end of run method
                         });
                     }
