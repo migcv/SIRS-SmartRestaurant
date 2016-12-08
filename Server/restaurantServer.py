@@ -6,7 +6,6 @@ import ssl
 import time
 import threading
 import os
-
 import hashlib
 
 from Crypto.PublicKey import RSA
@@ -95,14 +94,14 @@ def createTable(): # Creates a new table with an ID, QRCode and n_seats
 	tableID = random.randint(1,100)
 	seats = random.randint(1,10)
 	readTime = 0
-	qrSeats = [qrcodeString, seats, readTime] # [QRCodeString, n_seats]
+	qrSeats = [qrcodeString, seats, readTime] 
 	
 	infoTable.update({tableID : qrSeats})
 
 	return tableID, qrcodeString, seats
 # END of createTable()
 
-def sendQRCodeSocket(secureServerTable):  # Server send QRCode string to client
+def sendQRCodeSocket(secureServerTable):  # Server send QRCode string to Table
 	servicename = "SendQR"
 
 	tableID, qr, nseats = createTable()
@@ -113,7 +112,7 @@ def sendQRCodeSocket(secureServerTable):  # Server send QRCode string to client
 	secureServerTable.send(str.encode(dataToSend))
 # END of sendQRCodeSocket()
 
-def updateQR(secureServerTable):
+def updateQR(secureServerTable):  # Table request for the update of the QRCode
 	servicename = "UpdateQR"
 	aux = secureServerTable.recv(24).decode("utf-8")
 	tableID = int(aux)
@@ -191,7 +190,7 @@ def receiveOrder(secureServerClient): # Server receives order from the Customer
 					
 # END of receiveOrderSocket()
 
-def calculatePrices(secureServerClient):
+def calculatePrices(secureServerClient): # Customer send the clientID and the server send the total orders and the value to pay
 	servicename = "ReceiveIDToPay"
 		
 	aux = secureServerClient.recv(128)
@@ -222,7 +221,7 @@ def calculatePrices(secureServerClient):
 			
 # END of calculatePrices()
 	
-def sendRandomID(secureServerClient):
+def sendRandomID(secureServerClient): # Received the clientID and send an randomID to the Customer for the payment entity
 	servicename = "SendRandomID"
 	
 	aux = secureServerClient.recv(128)
@@ -239,7 +238,7 @@ def sendRandomID(secureServerClient):
 	sendRandomClientIDValueToPay(clientID)
 	
 	
-def sendRandomClientIDValueToPay(clientID):
+def sendRandomClientIDValueToPay(clientID): # Send the RandomID of the Customer and the value to pay to the payment entity
 	port = 10002
 	servicename = "sendClientIDValueToPay"
 	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

@@ -73,7 +73,7 @@ def connectionClientPayment():
 
 # END of connectionServerPayment()
 
-def receiveRandomClientIDValueToPay(secureServerPayment):
+def receiveRandomClientIDValueToPay(secureServerPayment): # Received from the restaurant the randomID and the value to pay
    
     servicename = "sendClientIDValueToPay"
     data = secureServerPayment.recv(1024).decode("utf-8")
@@ -85,8 +85,10 @@ def receiveRandomClientIDValueToPay(secureServerPayment):
     #Verify digital signature
     
     pub = RSA.importKey(open('restaurant/pub.pem').read())
+    # aux2 = randomID : valueToPay
     aux2 = aux[0] + " : " + aux[1]
     hashData= SHA256.new(str.encode(aux2)).digest()
+    # aux[2] - digital signature
     signature = aux[2]
     print(int(signature))
     if(pub.verify(hashData, int(signature))):
@@ -97,7 +99,7 @@ def receiveRandomClientIDValueToPay(secureServerPayment):
         
 # END of receiveRandomClientIDValueToPay()
 
-def receiveRandomID(secureClientPayment):
+def receiveRandomID(secureClientPayment): # Received random id from the Customer
     servicename = "RandomID"
     
     data = secureClientPayment.recv(2048).decode("utf-8")
@@ -124,7 +126,7 @@ def receiveRandomID(secureClientPayment):
     else:
         print("\n<{}>: Random ID not found".format(servicename))
             				
-# END of receiveOrderSocket() 
+# END of receiveRandomID() 
 
 class myThread (threading.Thread):
     def __init__(self, threadID, name, counter):
