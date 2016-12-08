@@ -7,6 +7,9 @@ import time
 import threading
 import os
 import hashlib
+import time
+
+from datetime import date
 
 from base64 import b64decode 
 from Crypto.PublicKey import RSA
@@ -90,23 +93,24 @@ def receiveRandomClientIDValueToPay(secureServerPayment): # Received from the re
     hashData= SHA256.new(str.encode(aux2)).digest()
     # aux[2] - digital signature
     signature = aux[2]
-    print(int(signature))
-    if(pub.verify(hashData, int(signature))):
-        print("Signature is OK!")
-    else:
-        print("Wrong Signature....")
+    #print(int(signature))
+    #if(pub.verify(hashData, signature)):
+    #   print("Signature is OK!")
+    #else:
+    #    print("Wrong Signature....")
     
         
 # END of receiveRandomClientIDValueToPay()
 
-def receiveRandomID(secureClientPayment): # Received random id from the Customer
+def receiveRandomID(secureClientPayment): # Received random id and card info from the Customer
     servicename = "RandomID"
     
     data = secureClientPayment.recv(2048).decode("utf-8")
     
     print("\n<{}>:Received randomID <{}>".format(servicename, data))
     
-    randomID = data
+    aux = data.split(" : ")
+    randomID = aux[0]
     if(randomIDValueToPay.get(randomID, 'empty') != 'empty'):
         valueToPay = randomIDValueToPay.get(randomID, 'empty')
         
@@ -122,12 +126,54 @@ def receiveRandomID(secureClientPayment): # Received random id from the Customer
         
         secureClientPayment.send(str.encode(hash))
         print("\n<{}>:Send value to pay digest <{}>".format(servicename, str.encode(hash)))
+              
         
     else:
         print("\n<{}>: Random ID not found".format(servicename))
-            				
+    
+    cardNumber = aux[1]
+    date1 = aux[2].split("/")
+    csc = aux[3]
+    now = date.today()
+    year1 = "20" + date1[1]
+    try:
+        cardDate = date(int(year1), int(date1[0]), now.day)
+    except ValueError:
+        secureClientPayment.send(str.encode("Error"))
+        
+        
+    if((len(cardNumber) == 16) and (len(csc) == 3) and (now < cardDate)):
+        secureClientPayment.send(str.encode("\nDone"))
+        sendConfirmationToRestaurant(randomID)
+        
+    else:
+        secureClientPayment.send(str.encode("Error"))
+        			
 # END of receiveRandomID() 
+    
+def sendConfirmationToRestaurant(randomid):
+    port = 10004
+    servicename = "sendConfirmation"
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
+    connstream = ssl.wrap_socket(serversocket,
+                                 certfile="restaurant/server.crt",
+                                 keyfile="restaurant/server.key",
+                                 ssl_version=ssl.PROTOCOL_TLSv1_2)	
+
+    connstream.connect((hostname, port))
+    print("<{}>: Port: {}".format(servicename, port))
+    
+    connstream.send(str.encode(randomid + " : " + "DONE"))
+    for i in randomID :
+        if(randomID[i] == randomid):
+            randomID.pop(i)
+        
+    randomIDValueToPay.pop(randomid)
+            
+    connstream.close()
+    serversocket.close()        
+    
 class myThread (threading.Thread):
     def __init__(self, threadID, name, counter):
         threading.Thread.__init__(self)
@@ -148,7 +194,6 @@ class myThread (threading.Thread):
 # MAIN PROGRAM -----------------------------------------------------------------------
 randomID = [] 		# randomID
 randomIDValueToPay = {} # {randomID : ValueToPay}
-
 
 hostname = ''
 

@@ -1,2 +1,8 @@
 ssh root@185.43.210.233
 Mann4s21
+
+1) cd SIRS
+2) python3 paymentServer.py
+3) python3 restaurantServer.py
+4) deploy APP to Android with sdk 24
+5) deploy TABLE to emulator

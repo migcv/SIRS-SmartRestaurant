@@ -270,9 +270,57 @@ def sendRandomClientIDValueToPay(clientID): # Send the RandomID of the Customer 
 	print("Data Sent: <{}>".format(dataToSend))
 
 	connstream.close()
-	serversocket.close()	
+	serversocket.close()
 
-# END of sendClientIDValueToPay()		
+# END of sendClientIDValueToPay()
+
+def receiveConfirmationOfPayment():
+	port = 10004
+	servicename = "receivedConfirmation"
+
+	serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	serversocket.bind((hostname, port))
+	print("<{}>:Port {}".format(servicename, port))
+
+	serversocket.listen(5)
+	print("<{}>:Listenning".format(servicename))
+	while 1:
+		(clientsocket, address) = serversocket.accept()
+		print("\n<{}>:Got a connection from <{}>".format(servicename, address))
+
+		connstream = ssl.wrap_socket(clientsocket,
+		                                      server_side=True,
+		                                      certfile="restaurant/server.crt",
+		                                      keyfile="restaurant/server.key",
+		                                      ssl_version=ssl.PROTOCOL_TLSv1_2)
+
+		aux = connstream.recv(2048).decode("utf-8")
+		data = aux.split(" : ")
+		for i in clientIDRandomIDValueToPay:
+			if(data[0] in clientIDRandomIDValueToPay[i]):
+				clientID = i
+				break
+	
+		tableID = clientsTable.get(clientID)
+		count = 0
+		for i in clientsTable:
+			if(clientsTable[i] == tableID):
+				count += 1
+		
+		if(count == 0):
+			infoTable.pop(tableID)
+		
+		clientsTable.pop(clientID)
+		clientsOrders.pop(clientID)
+		clientsPayment.pop(clientID)
+		clientIDRandomIDValueToPay.pop(clientID)
+		
+		print("Client and Table removed")
+	
+		connstream.close()
+		clientsocket.close()	
+	
+# END of receiveConfirmationOfPayment()
 		
 class myThread (threading.Thread):
 	def __init__(self, threadID, name, counter):
@@ -288,6 +336,8 @@ class myThread (threading.Thread):
 			connectionServerTable()
 		if(self.name=="connectionServerClient"):
 			connectionServerClient()
+		if(self.name=="receivedConfirmation"):
+			receiveConfirmationOfPayment()
 		print("Exiting " + self.name)
 # END of myThread
 
@@ -311,8 +361,10 @@ print("SmartRestaurant Server")
 try:
 	thread1 = myThread(1, "connectionServerTable", 1)
 	thread2 = myThread(1, "connectionServerClient", 1)
+	thread3 = myThread(1, "receivedConfirmation",1)
 	thread1.start()
 	thread2.start()
+	thread3.start()
 	input("Press key for close:")
 	print("Closing!")
 	os._exit(1)
