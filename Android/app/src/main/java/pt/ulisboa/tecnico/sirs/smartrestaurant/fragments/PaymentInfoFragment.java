@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,21 +12,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import org.spongycastle.util.encoders.Base64Encoder;
-
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.security.KeyManagementException;
+import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Signature;
-import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 import javax.net.ssl.KeyManager;
@@ -39,7 +33,6 @@ import javax.net.ssl.TrustManager;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
-
 
 public class PaymentInfoFragment extends Fragment {
 
@@ -142,8 +135,7 @@ public class PaymentInfoFragment extends Fragment {
                 System.out.println("Connected!!!");
                 connected = true;
                 DataOutputStream oos = null;
-                String o = Customer.getPaymentCode();
-                System.out.println("Payment Code: " + o);
+                System.out.println("Payment Code: " + Customer.getPaymentCode());
                 try {
                     //Request Service RandomID
                     oos = new DataOutputStream(socket.getOutputStream());
@@ -152,16 +144,30 @@ public class PaymentInfoFragment extends Fragment {
 
                     //Send the Payment Code
                     oos = new DataOutputStream(socket.getOutputStream());
-                    oos.writeBytes(o);
+                    oos.writeBytes(Customer.getPaymentCode() + " : " + Customer.getCardNumber() + " : " + Customer.getExperationDate() + " : " + Customer.getCardCSC());
                     oos.flush();
 
                     //Receive hash(valueToPay)
                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     String s;
-                    while ((s=in.readLine())!=null) {
-                        System.out.println("MESSAGE=" + s);
+                    s=in.readLine();
+                    System.out.println("MESSAGE=" + s);
+                    MessageDigest md = MessageDigest.getInstance("SHA-256");
+                    md.update(Float.toString(Customer.getValueToPay()).getBytes("UTF-8")); // Change this to "UTF-16" if needed
+                    byte[] digest = md.digest();
+                    String digestStr = String.format("%064x", new java.math.BigInteger(1, digest));
+                    System.out.println("HASH: " + digestStr);
+                    if(digestStr.equals(s)) {
+                        System.out.println("HASH ACCEPTED");
+                    } else {
+                        System.out.println("HASH WRONG");
                     }
-
+                    s=in.readLine();
+                    if(s.equals("Done")) {
+                        System.out.println("Payment Done");
+                    } else {
+                        System.out.println("ERROR");
+                    }
                 } catch (Exception e) {
                     Log.e("ClientActivity", "S: Error", e);
                 }
@@ -190,7 +196,7 @@ public class PaymentInfoFragment extends Fragment {
         }
     }
 
-    public static boolean verifyDigitalSignature(byte[] cipherDigest, byte[] bytes, PublicKey publicKey, X509Certificate cert){
+    public static boolean verifyDigitalSignature(byte[] cipherDigest, byte[] bytes, PublicKey publicKey, X509Certificate cert) {
         boolean verify = false;
         try {
             // verify the signature with the public key
