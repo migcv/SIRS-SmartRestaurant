@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -50,6 +51,14 @@ public class FinalFragment extends Fragment {
                 goToMainActivity();
             }
         });
+        TextView cardNumber = (TextView) view.findViewById(R.id.cardNumber);
+        TextView taxNumber = (TextView) view.findViewById(R.id.taxNumber);
+        TextView customerName = (TextView) view.findViewById(R.id.customerName);
+        TextView totalPaid = (TextView) view.findViewById(R.id.totalPaid);
+        cardNumber.setText("Card Number: **** **** ***** " + Customer.getCardNumber().substring(12,16));
+        customerName.setText("Name: " + Customer.getName());
+        taxNumber.setText("Tax Number: " + Customer.getTaxNumber());
+        totalPaid.setText("Total Paid: " + Customer.getValueToPay() + "€");
     }
 
     public void goToMainActivity() {
