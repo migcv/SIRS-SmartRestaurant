@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class PaymentInfoFragment extends Fragment {
 
     View view;
 
-    private boolean connected = false;
+    private boolean paymentDone = false;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,33 +54,36 @@ public class PaymentInfoFragment extends Fragment {
     }
 
     private void initializeElements() {
-        Button payButton = (Button) view.findViewById(R.id.payButton);
+        final Button payButton = (Button) view.findViewById(R.id.payButton);
         Button backButton = (Button) view.findViewById(R.id.backButton);
         payButton.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                EditText cardNumber = (EditText) view.findViewById(R.id.cardNumber);
-                EditText cardExperation = (EditText) view.findViewById(R.id.cardExperation);
-                EditText cardCSC = (EditText) view.findViewById(R.id.cardCSC);
-                EditText customerName = (EditText) view.findViewById(R.id.customerName);
-                EditText customerTaxNumber = (EditText) view.findViewById(R.id.customerTaxNumber);
-                EditText customerEmail = (EditText) view.findViewById(R.id.customerEmail);
-                Customer.setCardNumber(cardNumber.getText().toString());
-                Customer.setExperationDate(cardExperation.getText().toString());
-                Customer.setCardCSC(cardCSC.getText().toString());
-                Customer.setName(customerName.getText().toString());
-                Customer.setTaxNumber(customerTaxNumber.getText().toString());
-                Customer.setEmail(customerEmail.getText().toString());
+            EditText cardNumber = (EditText) view.findViewById(R.id.cardNumber);
+            EditText cardExperation = (EditText) view.findViewById(R.id.cardExperation);
+            EditText cardCSC = (EditText) view.findViewById(R.id.cardCSC);
+            EditText customerName = (EditText) view.findViewById(R.id.customerName);
+            EditText customerTaxNumber = (EditText) view.findViewById(R.id.customerTaxNumber);
+            EditText customerEmail = (EditText) view.findViewById(R.id.customerEmail);
+            Customer.setCardNumber(cardNumber.getText().toString());
+            Customer.setExperationDate(cardExperation.getText().toString());
+            Customer.setCardCSC(cardCSC.getText().toString());
+            Customer.setName(customerName.getText().toString());
+            Customer.setTaxNumber(customerTaxNumber.getText().toString());
+            Customer.setEmail(customerEmail.getText().toString());
 
-                try {
-                    Thread cThread = new Thread(new PaymentInfoFragment.ClientThread());
-                    cThread.start();
-                    cThread.join();
-                } catch (Exception e) {
-                }
-
+            try {
+                Thread cThread = new Thread(new PaymentInfoFragment.ClientThread());
+                cThread.start();
+                cThread.join();
+            } catch (Exception e) {
+            }
+            if(paymentDone) {
                 Fragment fragment = new FinalFragment();
                 replaceFragment(fragment, "FINAL_FRAGMENT");
                 Customer.getOrder().orderDone();
+            }else {
+                Snackbar.make(view.findViewById(R.id.tableLayout), "Error", Snackbar.LENGTH_SHORT ).show();
+            }
             }
         });
     }
@@ -115,6 +119,7 @@ public class PaymentInfoFragment extends Fragment {
         public void run() {
             try {
                 System.out.println("Connecting!!!");
+                paymentDone = false;
                 InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
                 //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
 
@@ -133,7 +138,6 @@ public class PaymentInfoFragment extends Fragment {
                 }
 
                 System.out.println("Connected!!!");
-                connected = true;
                 DataOutputStream oos = null;
                 System.out.println("Payment Code: " + Customer.getPaymentCode());
                 try {
@@ -164,8 +168,10 @@ public class PaymentInfoFragment extends Fragment {
                     }
                     s=in.readLine();
                     if(s.equals("Done")) {
+                        paymentDone = true;
                         System.out.println("Payment Done");
                     } else {
+                        paymentDone = false;
                         System.out.println("ERROR");
                     }
                 } catch (Exception e) {
@@ -175,7 +181,6 @@ public class PaymentInfoFragment extends Fragment {
                 System.out.println("Socket closed!!!!");
             } catch (Exception e) {
                 Log.e("ClientActivity", "C: Error", e);
-                connected = false;
             }
         }
     }
