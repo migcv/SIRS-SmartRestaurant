@@ -33,6 +33,7 @@ import javax.net.ssl.TrustManager;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Constants;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 
@@ -146,8 +147,7 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
         public void run() {
             try {
                 System.out.println("Connecting!!!");
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
-                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
+                InetAddress serverAddr = InetAddress.getByName(Constants.IP);
 
                 // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
                 SSLSocketFactory sslSocketFactory = getSocketFactory();
@@ -162,8 +162,6 @@ public class QRScannerActivity extends AppCompatActivity implements ZXingScanner
                         System.out.println("Using: "+socket.getEnabledProtocols()[0]);
                     }
                 }
-
-                //Socket socket = new Socket(serverAddr, 10001);
 
                 System.out.println("Connected!!!");
                 connected = true;

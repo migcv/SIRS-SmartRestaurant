@@ -27,6 +27,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 
 import pt.ulisboa.tecnico.sirs.smartrestaurant.R;
+import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Constants;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.Customer;
 import pt.ulisboa.tecnico.sirs.smartrestaurant.core.NaiveTrustManager;
 
@@ -227,8 +228,7 @@ public class OrdersFragment extends Fragment {
         public void run() {
             try {
                 System.out.println("Connecting!!!");
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233"); //MANEL
-                //InetAddress serverAddr = InetAddress.getByName("192.168.1.66"); //CASA
+                InetAddress serverAddr = InetAddress.getByName(Constants.IP);
 
                 // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
                 SSLSocketFactory sslSocketFactory = getSocketFactory();

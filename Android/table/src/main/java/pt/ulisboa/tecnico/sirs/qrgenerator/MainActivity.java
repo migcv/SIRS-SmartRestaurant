@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 System.out.println("Connecting!");
 
-                InetAddress serverAddr = InetAddress.getByName("185.43.210.233");
+                InetAddress serverAddr = InetAddress.getByName(Constants.IP);
 
                 // Create an instance of SSLSocket (TRUST ONLY OUR CERT)
                 SSLSocketFactory sslSocketFactory = getSocketFactory();
