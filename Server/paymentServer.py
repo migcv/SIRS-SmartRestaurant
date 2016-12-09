@@ -93,11 +93,16 @@ def receiveRandomClientIDValueToPay(secureServerPayment): # Received from the re
     hashData= SHA256.new(str.encode(aux2)).digest()
     # aux[2] - digital signature
     signature = aux[2]
+    a = signature.replace("(", "")
+    b = a.replace(")", "")
+    c = b.replace(",", "")
+    d = int(c)
+    e = (d,)
     #print(int(signature))
-    #if(pub.verify(hashData, signature)):
-    #   print("Signature is OK!")
-    #else:
-    #    print("Wrong Signature....")
+    if(pub.verify(hashData, e)):
+        print("Signature is OK!")
+    else:
+        print("Wrong Signature....")
     
         
 # END of receiveRandomClientIDValueToPay()
@@ -164,7 +169,18 @@ def sendConfirmationToRestaurant(randomid):
     connstream.connect((hostname, port))
     print("<{}>: Port: {}".format(servicename, port))
     
-    connstream.send(str.encode(randomid + " : " + "DONE"))
+    priv = RSA.importKey(open('pay_dal/pay_dal_priv.pem').read())
+    
+    aux = randomid
+    
+    hashData= SHA256.new(str.encode(aux)).digest()
+    signature = priv.sign(hashData, '')
+    
+    dataToSend = aux + " : " + str(signature)
+    
+    connstream.send(str.encode(dataToSend))
+    print("Data Sent: <{}>".format(dataToSend))
+    
     for i in randomID :
         if(randomID[i] == randomid):
             randomID.pop(i)

@@ -254,8 +254,7 @@ def sendRandomClientIDValueToPay(clientID): # Send the RandomID of the Customer 
 	
 	#Send randomIDValueToPay and digital signature
 	
-	priv = RSA.importKey(open('restaurant/priv.pem').read())
-	
+	priv = RSA.importKey(open('restaurant/priv.pem').read())	
 
 	randomIDValueToPay = clientIDRandomIDValueToPay[clientID]
 
@@ -264,7 +263,7 @@ def sendRandomClientIDValueToPay(clientID): # Send the RandomID of the Customer 
 	hashData= SHA256.new(str.encode(aux)).digest()
 	signature = priv.sign(hashData, '')
 	
-	dataToSend = aux + " : " + str(signature[0])
+	dataToSend = aux + " : " + str(signature)
 	
 	connstream.send(str.encode(dataToSend))
 	print("Data Sent: <{}>".format(dataToSend))
@@ -296,21 +295,46 @@ def receiveConfirmationOfPayment():
 
 		aux = connstream.recv(2048).decode("utf-8")
 		data = aux.split(" : ")
+		
+		#Verify digital signature
+		
+		pub = RSA.importKey(open('pay_dal/pay_dal_pub.pem').read())
+		hashData= SHA256.new(str.encode(data[0])).digest()
+		# digital signature
+		signature = data[1]
+		a = signature.replace("(", "")
+		b = a.replace(")", "")
+		c = b.replace(",", "")
+		d = int(c)
+		e = (d,)
+		#print(int(signature))
+		if(pub.verify(hashData, e)):
+			print("Signature is OK!")
+		else:
+			print("Wrong Signature....")		
+		
+		
+		
+		
+		
 		for i in clientIDRandomIDValueToPay:
 			if(data[0] in clientIDRandomIDValueToPay[i]):
 				clientID = i
 				break
 	
 		tableID = clientsTable.get(clientID)
+		clientsTable.pop(clientID)
+		
 		count = 0
 		for i in clientsTable:
 			if(clientsTable[i] == tableID):
 				count += 1
 		
 		if(count == 0):
+			print("Deleted Table")
 			infoTable.pop(tableID)
 		
-		clientsTable.pop(clientID)
+		
 		clientsOrders.pop(clientID)
 		clientsPayment.pop(clientID)
 		clientIDRandomIDValueToPay.pop(clientID)
